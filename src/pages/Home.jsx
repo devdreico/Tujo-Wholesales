@@ -77,17 +77,8 @@ export default function Home() {
 
       <Marquee items={REGRIMES} />
 
-      <section className="landing-map" aria-labelledby="world-map-title">
-        <div className="map-graphic" aria-hidden="true">
-          <div className="map-connector" />
-          <span className="map-node" />
-          <span className="map-node" />
-          <span className="map-node" />
-          <span className="map-node" />
-          <span className="map-node" />
-        </div>
-
-        <div className="map-copy">
+      <section className="world-hero glass" aria-labelledby="world-map-title">
+        <div className="world-hero__copy">
           <p className="section-heading__eyebrow mono">
             <span className="section-heading__pulse" aria-hidden="true" />
             Rutas inteligentes
@@ -106,6 +97,40 @@ export default function Home() {
             <li>Coordinación de compras por volumen y producto.</li>
             <li>Distribución nacional e internacional con trazabilidad.</li>
           </ul>
+        </div>
+
+        <div className="world-map" aria-hidden="true">
+          <svg viewBox="0 0 760 420" className="world-map__svg" role="img">
+            <defs>
+              <linearGradient id="routeLine" x1="0%" x2="100%" y1="0%" y2="0%">
+                <stop offset="0%" stopColor="rgba(17,17,17,0.12)" />
+                <stop offset="40%" stopColor="rgba(17,17,17,0.5)" />
+                <stop offset="100%" stopColor="rgba(17,17,17,0.12)" />
+              </linearGradient>
+            </defs>
+            <g className="world-map__continents">
+              <path d="M80 120L140 90L180 116L170 170L120 188L82 168L80 120Z" />
+              <path d="M220 118L278 96L322 112L314 158L286 172L236 161L220 118Z" />
+              <path d="M410 104L510 82L562 102L548 170L468 196L420 168L410 104Z" />
+              <path d="M510 210L572 225L600 270L582 312L530 286L500 242L510 210Z" />
+              <path d="M246 210L290 200L316 236L300 292L270 310L236 272L246 210Z" />
+              <path d="M324 312L350 302L390 314L380 350L336 354L324 312Z" />
+            </g>
+            <g className="world-map__routes">
+              <path d="M120 140C220 128, 300 115, 420 130C520 142, 570 180, 600 230" />
+              <path d="M286 164C330 198, 390 232, 480 250" />
+              <path d="M392 150C430 180, 468 182, 520 150" />
+              <path d="M174 170C220 208, 248 240, 278 272" />
+            </g>
+            <g className="world-map__nodes">
+              <circle cx="120" cy="140" r="6" />
+              <circle cx="286" cy="164" r="6" />
+              <circle cx="392" cy="150" r="6" />
+              <circle cx="600" cy="230" r="7" />
+              <circle cx="278" cy="272" r="6" />
+              <circle cx="520" cy="150" r="6" />
+            </g>
+          </svg>
         </div>
       </section>
 

@@ -1,16 +1,6 @@
 export default function Header({ kicker, words, lead, badges }) {
   return (
     <header className="header">
-      <div className="header__logo-wrap glass">
-        <img
-          className="header__logo"
-          src="/soverath-wholesales-logo.png"
-          alt="Logo de Soverath Wholesales"
-          width="76"
-          height="76"
-        />
-      </div>
-
       <p className="header__eyebrow mono">{kicker}</p>
 
       <h1 className="header__title">

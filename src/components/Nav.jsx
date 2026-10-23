@@ -26,8 +26,17 @@ export default function Nav() {
   return (
     <nav className="nav" aria-label="Navegación principal">
       <Link to="/" className="nav__brand" onClick={() => setOpen(false)}>
-        <span className="nav__brand-mark">S</span>
-        <span className="nav__brand-text">Soverath</span>
+        <img
+          className="nav__brand-logo"
+          src="/soverath-wholesales-logo.png"
+          alt="Soverath Wholesales"
+          width="42"
+          height="42"
+        />
+        <span className="nav__brand-word" aria-label="Soverath Wholesales">
+          <span className="nav__brand-s">S</span>
+          <span className="nav__brand-wholesales">WHOLESALES</span>
+        </span>
       </Link>
 
       <button
