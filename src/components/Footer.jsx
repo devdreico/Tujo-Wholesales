@@ -9,14 +9,14 @@ export default function Footer() {
           <div className="footer__brand">
             <img
               className="footer__holding-logo"
-              src="/soverath-logo.jpg"
-              alt="Logotipo de Soverath Holding"
+              src="/soverath-wholesales-logo.png"
+              alt="Logotipo de Soverath Wholesales"
               width="48"
               height="48"
             />
             <p className="footer__line">
-              Soverath Holding, casa matriz de Soverath Wholesales, importador con
-              inventario para nuestras bodegas de productos.
+              Soverath Wholesales coordina inventario, envío y abastecimiento para sectores
+              de consumo, industria, gastronomía y retail en múltiples mercados.
             </p>
           </div>
 
@@ -26,6 +26,12 @@ export default function Footer() {
             </Link>
             <Link className="footer__link mono" to="/productos">
               Productos
+            </Link>
+            <Link className="footer__link mono" to="/tiendas">
+              Tiendas
+            </Link>
+            <Link className="footer__link mono" to="/operacion">
+              Operación
             </Link>
           </nav>
         </div>
@@ -44,6 +50,14 @@ export default function Footer() {
           ))}
         </ul>
 
+        <div className="footer__meta">
+          <Link className="footer__legal mono" to="/cookies">
+            Cookies
+          </Link>
+          <Link className="footer__legal mono" to="/privacidad">
+            Privacidad
+          </Link>
+        </div>
         <p className="footer__copy mono">
           © {new Date().getFullYear()} Soverath Wholesales · soverath.presentto.online
         </p>

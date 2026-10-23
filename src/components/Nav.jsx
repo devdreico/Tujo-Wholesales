@@ -5,6 +5,8 @@ import { stores } from '../data/stores.jsx'
 const links = [
   { to: '/', label: 'Índice', end: true },
   { to: '/productos', label: 'Productos' },
+  { to: '/operacion', label: 'Operación' },
+  { to: '/tiendas', label: 'Tiendas' },
 ]
 
 export default function Nav() {

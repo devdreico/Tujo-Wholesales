@@ -1,17 +1,35 @@
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Background from './components/Background.jsx'
 import ScrollProgress from './components/ScrollProgress.jsx'
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
+import CookieConsent from './components/CookieConsent.jsx'
 import PageTransition, { RouteFallback } from './components/PageTransition.jsx'
+
+const readConsent = () => {
+  try {
+    return localStorage.getItem('soverath-cookie-consent') ?? 'undecided'
+  } catch {
+    return 'undecided'
+  }
+}
 
 export default function App() {
   const { pathname } = useLocation()
+  const [cookieConsent, setCookieConsent] = useState(readConsent)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' })
   }, [pathname])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('soverath-cookie-consent', cookieConsent)
+    } catch {
+      // noop
+    }
+  }, [cookieConsent])
 
   return (
     <>
@@ -31,6 +49,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <CookieConsent consent={cookieConsent} onChoose={setCookieConsent} />
     </>
   )
 }

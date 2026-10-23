@@ -6,6 +6,7 @@ import { setSeo } from './lib/seo.js'
 import './index.css'
 import './styles/nav.css'
 import './styles/home.css'
+import './styles/light-theme.css'
 import './styles/products.css'
 import './styles/store.css'
 
@@ -13,6 +14,10 @@ const HomeEntry = lazy(() => import('./components/HomeEntry.jsx'))
 const Products = lazy(() => import('./pages/Products.jsx'))
 const Category = lazy(() => import('./pages/Category.jsx'))
 const StorePage = lazy(() => import('./pages/StorePage.jsx'))
+const TiendasPage = lazy(() => import('./pages/Tiendas.jsx'))
+const OperacionPage = lazy(() => import('./pages/Operacion.jsx'))
+const CookiesPage = lazy(() => import('./pages/Cookies.jsx'))
+const PrivacyPage = lazy(() => import('./pages/Privacy.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
 /** /admin no se prerendera (localStorage en primer render): noindex al cargar su chunk. */
@@ -37,6 +42,10 @@ export function AppTree() {
             <Route path="/productos" element={<Products />} />
             <Route path="/productos/:categoria" element={<Category />} />
             <Route path="/tienda/:slug" element={<StorePage />} />
+            <Route path="/tiendas" element={<TiendasPage />} />
+            <Route path="/operacion" element={<OperacionPage />} />
+            <Route path="/cookies" element={<CookiesPage />} />
+            <Route path="/privacidad" element={<PrivacyPage />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Route>

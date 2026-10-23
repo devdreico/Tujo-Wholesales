@@ -1,25 +1,26 @@
 :root {
-  color-scheme: dark;
-  --bg-0: #040506;
-  --bg-1: #0b0d10;
-  --bg-2: #121619;
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-bg-strong: rgba(255, 255, 255, 0.07);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-highlight: rgba(255, 255, 255, 0.17);
-  --text: #f4f4f4;
-  --text-muted: rgba(244, 244, 244, 0.7);
-  --soft: rgba(255, 255, 255, 0.05);
-  --glow: rgba(255, 255, 255, 0.18);
-  --radius-card: 26px;
-  --radius-glass: 24px;
-  --shadow-card: 0 24px 55px -24px rgba(0, 0, 0, 0.9);
-  --font: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: light;
+  --bg-0: #ffffff;
+  --bg-1: #f6f6f4;
+  --bg-2: #ededeb;
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-bg-strong: #ffffff;
+  --glass-border: #d8d9d7;
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --text: #171918;
+  --text-muted: #5d625f;
+  --soft: #f0f1ef;
+  --glow: rgba(23, 25, 24, 0.12);
+  --radius-card: 6px;
+  --radius-glass: 6px;
+  --shadow-card: 0 18px 40px -30px rgba(23, 25, 24, 0.28);
+  --font: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo,
     Consolas, monospace;
-  --accent-cyan: #dedede;
-  --accent-ember: #8a8a8a;
-  --light-strength: 0.72;
+  --accent-cyan: #272b29;
+  --accent-ember: #777b78;
+  --light-strength: 0;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-snap: cubic-bezier(0.65, 0, 0.35, 1);
   --nav-h: 68px;
@@ -48,9 +49,10 @@ body {
   color: var(--text);
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.08), transparent 18%),
-    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.05), transparent 22%),
-    linear-gradient(160deg, var(--bg-0) 0%, var(--bg-1) 52%, var(--bg-2) 100%);
+    linear-gradient(rgba(23, 25, 24, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 25, 24, 0.025) 1px, transparent 1px),
+    linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+  background-size: 36px 36px, 36px 36px, auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -85,6 +87,12 @@ a {
 
 button {
   font: inherit;
+}
+
+.page {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 5rem;
 }
 
 .mono {
@@ -163,9 +171,7 @@ select:focus-visible,
 
 .glass {
   position: relative;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-glass);
   box-shadow: var(--shadow-card), inset 0 1px 0 0 var(--glass-highlight);
@@ -173,12 +179,7 @@ select:focus-visible,
 }
 
 .glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04) 35%, transparent 70%);
-  pointer-events: none;
+  content: none;
 }
 
 /* ------------------------------------------------------------------ */

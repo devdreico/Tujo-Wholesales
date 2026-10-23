@@ -44,35 +44,123 @@ export default function Home() {
   return (
     <>
       <Header
-        kicker="Gateway oficial · nodo central"
-        words={['Soverath', 'Wholesales']}
+        kicker="Operación global · mayoreo inteligente"
+        words={['Delegation', 'is', 'today', 'logistics']}
         lead={
           <>
-            Ecosistema digital de mayoreo: <strong>22 tiendas</strong> con identidad
-            propia y un catálogo que escala a <strong>+1000 referencias reales</strong>{' '}
-            con inventario en bodega.
+            <strong>Delegar es la logística del hoy.</strong> Coordinamos abastecimiento,
+            bodegas y distribución para sectores estratégicos con operación real en
+            Europa y América.
           </>
         }
-        badges={['22 tiendas', '+1000 productos', 'Compra segura']}
+        badges={['22 nodos', 'Europa + América', 'Bodegas activas']}
       />
 
-      <section className="stats glass" aria-label="Cifras del ecosistema">
-        <StatCounter value={stores.length} label="tiendas conectadas" />
-        <span className="stats__divider" aria-hidden="true" />
-        <StatCounter value={CATALOG_TOTAL} suffix="+" label="referencias en catálogo" />
-        <span className="stats__divider" aria-hidden="true" />
-        <StatCounter value={categories.length} label="categorías cruzadas" />
+      <section className="landing-stats" aria-label="Cifras operativas del ecosistema">
+        <div className="landing-stats__item glass">
+          <span className="landing-stats__value mono">{stores.length}</span>
+          <span className="landing-stats__label mono">tiendas conectadas</span>
+        </div>
+        <div className="landing-stats__item glass">
+          <span className="landing-stats__value mono">{CATALOG_TOTAL}+</span>
+          <span className="landing-stats__label mono">referencias</span>
+        </div>
+        <div className="landing-stats__item glass">
+          <span className="landing-stats__value mono">{categories.length}</span>
+          <span className="landing-stats__label mono">categorías</span>
+        </div>
+        <div className="landing-stats__item glass">
+          <span className="landing-stats__value mono">6</span>
+          <span className="landing-stats__label mono">mercados</span>
+        </div>
       </section>
 
       <Marquee items={REGRIMES} />
+
+      <section className="landing-map" aria-labelledby="world-map-title">
+        <div className="map-graphic" aria-hidden="true">
+          <div className="map-connector" />
+          <span className="map-node" />
+          <span className="map-node" />
+          <span className="map-node" />
+          <span className="map-node" />
+          <span className="map-node" />
+        </div>
+
+        <div className="map-copy">
+          <p className="section-heading__eyebrow mono">
+            <span className="section-heading__pulse" aria-hidden="true" />
+            Rutas inteligentes
+          </p>
+          <h2 id="world-map-title" className="map-copy__title">
+            Red de abastecimiento con visión global y ejecución local.
+          </h2>
+          <p className="map-copy__text">
+            Operamos como capa logística y comercial para pedidos de mayoristas,
+            restaurantes, fábricas, retail y bodegas, conectando disponibilidad con
+            entrega y coordinación en países con demandas diferentes y tiempos de
+            respuesta muy exigentes.
+          </p>
+          <ul className="map-copy__list">
+            <li>Inventario sincronizado en múltiples mercados.</li>
+            <li>Coordinación de compras por volumen y producto.</li>
+            <li>Distribución nacional e internacional con trazabilidad.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="coverage" aria-labelledby="coverage-title">
+        <div id="coverage-title">
+          <SectionHeading
+            eyebrow="Cobertura operacional"
+            title="Operamos con rigor técnico y alcance comercial real."
+            meta="Europa · América"
+            description="La operación no se limita a la venta digital: conecta oferta, inventario, rutas y respaldo de compra para mercados con distintos ritmos regulatorios y logísticos."
+          />
+        </div>
+
+        <div className="coverage-grid">
+          <div className="coverage-card glass">
+            <h3>Francia</h3>
+            <p>Operación orientada a coordinación regional, aprovisionamiento y logística de distribución para negocios de volumen.</p>
+          </div>
+          <div className="coverage-card glass">
+            <h3>Estados Unidos</h3>
+            <p>Compra y abastecimiento con enfoque en demanda constante, stocking y logística de gran escala.</p>
+          </div>
+          <div className="coverage-card glass">
+            <h3>España</h3>
+            <p>Operación comercial y logística con sincronización de inventario y flujo de entrada/salida por canal.</p>
+          </div>
+          <div className="coverage-card glass">
+            <h3>Colombia</h3>
+            <p>Cobertura nacional para bodegas, retail, restaurantes y suministros críticos de diverso tipo.</p>
+          </div>
+        </div>
+
+        <div className="compliance-list">
+          <div className="compliance-item glass">
+            <strong>Colombia</strong>
+            <p>Todo el país, con coordinación por zona y logística de envío nacional.</p>
+          </div>
+          <div className="compliance-item glass">
+            <strong>Perú y Ecuador</strong>
+            <p>Operación activa y con presencia estratégica, enfocada en flujo y abastecimiento regional.</p>
+          </div>
+          <div className="compliance-item glass">
+            <strong>Brasil</strong>
+            <p>Un punto de operación con cobertura focalizada en una ciudad principal y una red de coordinación estratégica.</p>
+          </div>
+        </div>
+      </section>
 
       <section className="stores" aria-labelledby="stores-title">
         <div id="stores-title">
           <SectionHeading
             eyebrow="Directorio de nodos"
-            title="Veintidós tiendas, un mismo gateway"
+            title="Veintidós tiendas, un mismo sistema operativo"
             meta="01 — 22"
-            description="Cada nodo opera con identidad y subdominio propios; todos comparten inventario, logística y estándares de calidad del ecosistema."
+            description="Cada nodo conserva su identidad comercial, pero comparte inventario, estándares técnicos y coordinación logística del ecosistema."
           />
         </div>
 
@@ -95,11 +183,11 @@ export default function Home() {
       <section className="picks" aria-labelledby="picks-title">
         <div id="picks-title">
           <SectionHeading
-            eyebrow="Muestra de catálogo"
-            title="Lo que sale de bodega esta semana"
+            eyebrow="Muestra comercial"
+            title="Productos y recursos en flujo constante de operación"
             meta={`${String(products.length).padStart(2, '0')} de ${CATALOG_TOTAL}+`}
             accent="var(--accent-cyan)"
-            description="Referencias reales distribuidas entre los nodos del ecosistema. El inventario completo se publica en la sala de productos."
+            description="La oferta combina productos, consumibles, insumos y paquetes operativos para apoyar restaurantes, retail, industrias y puntos de distribución."
           />
         </div>
 
