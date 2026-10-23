@@ -1,13 +1,13 @@
 import { stores } from '../data/stores.jsx'
 import { CATALOG_TOTAL } from '../data/products.js'
 import { categoryFromSlug } from './routes.js'
+import { BASE_URL, LEGAL_NAME } from './brand.js'
 
-const BASE = 'https://soverath.presentto.online'
 const DEFAULT_ROBOTS = 'index, follow, max-image-preview:large'
 
 const NOT_FOUND_META = {
-  title: 'Página no encontrada | Soverath Wholesales',
-  description: 'La ruta solicitada no existe dentro del ecosistema Soverath Wholesales.',
+  title: `Página no encontrada | ${LEGAL_NAME}`,
+  description: `La ruta solicitada no existe dentro del ecosistema ${LEGAL_NAME}.`,
 }
 
 const normalizePath = (raw) => {
@@ -26,13 +26,13 @@ const normalizePath = (raw) => {
  */
 export function seoMetaFor(path = '/') {
   const clean = normalizePath(path)
-  const url = `${BASE}${clean === '/' ? '/' : clean}`
+  const url = `${BASE_URL}${clean === '/' ? '/' : clean}`
 
   if (clean === '/') {
     return {
-      title: 'Soverath Wholesales | Importador de productos y bodegas',
+      title: `${LEGAL_NAME} | Importador y mayorista con bodega propia`,
       description:
-        'Portal del ecosistema Soverath Wholesales: 22 tiendas afiliadas con identidad propia y catálogo de más de 1000 productos con inventario en bodega.',
+        'Portal mayorista de Tujo Wholesales, empresa derivada de Tujo Logistics: 22 tiendas afiliadas con identidad propia y catálogo de más de 1000 productos con inventario en bodega.',
       path: clean,
       url,
     }
@@ -40,9 +40,9 @@ export function seoMetaFor(path = '/') {
 
   if (clean === '/productos') {
     return {
-      title: `Productos y mayoreo (${CATALOG_TOTAL}+ referencias) | Soverath Wholesales`,
+      title: `Productos y mayoreo (${CATALOG_TOTAL}+ referencias) | ${LEGAL_NAME}`,
       description:
-        'Catálogo de mayoreo del ecosistema Soverath Wholesales: más de 1000 referencias con stock en bodega, buscador, filtros por tienda y categoría.',
+        'Catálogo de mayoreo del ecosistema Tujo Wholesales: más de 1000 referencias con stock en bodega, buscador, filtros por tienda y categoría.',
       path: clean,
       url,
     }
@@ -52,8 +52,8 @@ export function seoMetaFor(path = '/') {
     const category = categoryFromSlug(clean.slice('/productos/'.length))
     if (!category) return { ...NOT_FOUND_META, path: clean, url }
     return {
-      title: `${category} — mayoreo | Soverath Wholesales`,
-      description: `Mayoreo de ${category}: referencias con stock en bodega del ecosistema Soverath Wholesales, con buscador, filtros por nodo y precios por caja, pack, kilogramo o litro.`,
+      title: `${category} — mayoreo | ${LEGAL_NAME}`,
+      description: `Mayoreo de ${category}: referencias con stock en bodega del ecosistema Tujo Wholesales, con buscador, filtros por nodo y precios por caja, pack, kilogramo o litro.`,
       path: clean,
       url,
     }
@@ -63,8 +63,8 @@ export function seoMetaFor(path = '/') {
     const store = stores.find((entry) => entry.slug === clean.slice('/tienda/'.length))
     if (!store) return { ...NOT_FOUND_META, path: clean, url }
     return {
-      title: `${store.name} (${store.category}) | Soverath Wholesales`,
-      description: `${store.description} Nodo ${store.index} del ecosistema Soverath Wholesales — accede a su apartado en ${store.subdomain}.`,
+      title: `${store.name} (${store.category}) | ${LEGAL_NAME}`,
+      description: `${store.description} Nodo ${store.index} del ecosistema Tujo Wholesales — accede a su apartado en ${store.subdomain}.`,
       path: clean,
       url,
     }
@@ -72,9 +72,9 @@ export function seoMetaFor(path = '/') {
 
   if (clean === '/admin') {
     return {
-      title: 'Hub de pedidos | Soverath Wholesales',
+      title: `Hub de pedidos | ${LEGAL_NAME}`,
       description:
-        'Panel interno de operación multicanal del ecosistema Soverath Wholesales.',
+        'Panel interno de operación multicanal del ecosistema Tujo Wholesales.',
       path: clean,
       url,
       robots: 'noindex, follow',

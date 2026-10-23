@@ -6,10 +6,16 @@ import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
 import PageTransition, { RouteFallback } from './components/PageTransition.jsx'
+import { CONSENT_STORAGE_KEY, LEGACY } from './lib/brand.js'
 
 const readConsent = () => {
   try {
-    return localStorage.getItem('soverath-cookie-consent') ?? 'undecided'
+    const legacy = localStorage.getItem(LEGACY.consentKey)
+    if (legacy != null) {
+      localStorage.setItem(CONSENT_STORAGE_KEY, legacy)
+      localStorage.removeItem(LEGACY.consentKey)
+    }
+    return localStorage.getItem(CONSENT_STORAGE_KEY) ?? 'undecided'
   } catch {
     return 'undecided'
   }
@@ -25,7 +31,7 @@ export default function App() {
 
   useEffect(() => {
     try {
-      localStorage.setItem('soverath-cookie-consent', cookieConsent)
+      localStorage.setItem(CONSENT_STORAGE_KEY, cookieConsent)
     } catch {
       // noop
     }

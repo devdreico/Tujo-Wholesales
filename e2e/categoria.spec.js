@@ -12,10 +12,10 @@ test.describe('Página de categoría', () => {
 
     await page.goto('/productos/ferreteria')
 
-    await expect(page).toHaveTitle('Ferretería — mayoreo | Soverath Wholesales')
+    await expect(page).toHaveTitle('Ferretería — mayoreo | Tujo Wholesales')
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      'https://soverath.presentto.online/productos/ferreteria'
+      'https://wtujo.presentto.online/productos/ferreteria'
     )
     await expect(
       page.getByRole('heading', { level: 1, name: 'Mayoreo de Ferretería' })

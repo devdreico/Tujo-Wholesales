@@ -5,14 +5,15 @@ import SectionHeading from '../components/SectionHeading.jsx'
 import StoreCard from '../components/StoreCard.jsx'
 import ProductCard from '../components/ProductCard.jsx'
 import Marquee from '../components/Marquee.jsx'
-import StatCounter from '../components/StatCounter.jsx'
 import { useReveal } from '../hooks/useReveal.js'
 import { stores } from '../data/stores.jsx'
 import { products, CATALOG_TOTAL, categories } from '../data/products.js'
 import { setSeo } from '../lib/seo.js'
+import { LEGAL_NAME, PARENT_COMPANY } from '../lib/brand.js'
 
 const REGRIMES = [
   'mayoreo digital',
+  'importación directa',
   'bodega propia',
   'salud natural',
   'mascotas',
@@ -22,7 +23,6 @@ const REGRIMES = [
   'ferretería',
   'moda',
   'alimentos',
-  'logística',
   '22 nodos',
 ]
 
@@ -32,9 +32,9 @@ export default function Home() {
 
   useEffect(() => {
     setSeo({
-      title: 'Soverath Wholesales | Importador de productos y bodegas',
+      title: `${LEGAL_NAME} | Importador y mayorista con bodega propia`,
       description:
-        'Portal del ecosistema Soverath Wholesales: 22 tiendas afiliadas con identidad propia y catálogo de más de 1000 productos con inventario en bodega.',
+        'Portal del ecosistema Tujo Wholesales, empresa derivada de Tujo Logistics: 22 tiendas afiliadas con identidad propia y catálogo de más de 1000 productos con inventario en bodega.',
       path: '/',
     })
   }, [])
@@ -44,16 +44,16 @@ export default function Home() {
   return (
     <>
       <Header
-        kicker="Operación global · mayoreo inteligente"
-        words={['Delegation', 'is', 'today', 'logistics']}
+        kicker="Importación · mayoreo inteligente"
+        words={['Wholesale,', 'backed', 'by', 'logistics']}
         lead={
           <>
-            <strong>Delegar es la logística del hoy.</strong> Coordinamos abastecimiento,
-            bodegas y distribución para sectores estratégicos con operación real en
-            Europa y América.
+            <strong>El mayoreo del hoy, respaldado por {PARENT_COMPANY}.</strong>{' '}
+            Coordinamos importación, inventario y distribución para sectores
+            estratégicos con operación real en Europa y América.
           </>
         }
-        badges={['22 nodos', 'Europa + América', 'Bodegas activas']}
+        badges={['22 nodos', 'Europa + América', `Matriz: ${PARENT_COMPANY}`]}
       />
 
       <section className="landing-stats" aria-label="Cifras operativas del ecosistema">
@@ -87,10 +87,10 @@ export default function Home() {
             Red de abastecimiento con visión global y ejecución local.
           </h2>
           <p className="map-copy__text">
-            Operamos como capa logística y comercial para pedidos de mayoristas,
-            restaurantes, fábricas, retail y bodegas, conectando disponibilidad con
-            entrega y coordinación en países con demandas diferentes y tiempos de
-            respuesta muy exigentes.
+            Operamos como capa comercial y de abastecimiento para mayoristas,
+            restaurantes, fábricas, retail y bodegas, conectando disponibilidad
+            con entrega y coordinación en países con demandas diferentes y
+            tiempos de respuesta muy exigentes.
           </p>
           <ul className="map-copy__list">
             <li>Inventario sincronizado en múltiples mercados.</li>
@@ -101,13 +101,6 @@ export default function Home() {
 
         <div className="world-map" aria-hidden="true">
           <svg viewBox="0 0 760 420" className="world-map__svg" role="img">
-            <defs>
-              <linearGradient id="routeLine" x1="0%" x2="100%" y1="0%" y2="0%">
-                <stop offset="0%" stopColor="rgba(17,17,17,0.12)" />
-                <stop offset="40%" stopColor="rgba(17,17,17,0.5)" />
-                <stop offset="100%" stopColor="rgba(17,17,17,0.12)" />
-              </linearGradient>
-            </defs>
             <g className="world-map__continents">
               <path d="M80 120L140 90L180 116L170 170L120 188L82 168L80 120Z" />
               <path d="M220 118L278 96L322 112L314 158L286 172L236 161L220 118Z" />
@@ -147,15 +140,15 @@ export default function Home() {
         <div className="coverage-grid">
           <div className="coverage-card glass">
             <h3>Francia</h3>
-            <p>Operación orientada a coordinación regional, aprovisionamiento y logística de distribución para negocios de volumen.</p>
+            <p>Operación orientada a coordinación regional, aprovisionamiento y distribución mayorista para negocios de volumen.</p>
           </div>
           <div className="coverage-card glass">
             <h3>Estados Unidos</h3>
-            <p>Compra y abastecimiento con enfoque en demanda constante, stocking y logística de gran escala.</p>
+            <p>Compra y abastecimiento con enfoque en demanda constante, stocking y distribución de gran escala.</p>
           </div>
           <div className="coverage-card glass">
             <h3>España</h3>
-            <p>Operación comercial y logística con sincronización de inventario y flujo de entrada/salida por canal.</p>
+            <p>Operación comercial con sincronización de inventario y flujo de entrada/salida por canal mayorista.</p>
           </div>
           <div className="coverage-card glass">
             <h3>Colombia</h3>
@@ -166,15 +159,15 @@ export default function Home() {
         <div className="compliance-list">
           <div className="compliance-item glass">
             <strong>Colombia</strong>
-            <p>Todo el país, con coordinación por zona y logística de envío nacional.</p>
+            <p>Todo el país, con coordinación por zona y envío nacional.</p>
           </div>
           <div className="compliance-item glass">
             <strong>Perú y Ecuador</strong>
-            <p>Operación activa y con presencia estratégica, enfocada en flujo y abastecimiento regional.</p>
+            <p>Operación activa con presencia estratégica, enfocada en flujo y abastecimiento regional.</p>
           </div>
           <div className="compliance-item glass">
             <strong>Brasil</strong>
-            <p>Un punto de operación con cobertura focalizada en una ciudad principal y una red de coordinación estratégica.</p>
+            <p>Un punto de operación con cobertura focalizada en una ciudad principal y red de coordinación estratégica.</p>
           </div>
         </div>
       </section>
@@ -185,7 +178,7 @@ export default function Home() {
             eyebrow="Directorio de nodos"
             title="Veintidós tiendas, un mismo sistema operativo"
             meta="01 — 22"
-            description="Cada nodo conserva su identidad comercial, pero comparte inventario, estándares técnicos y coordinación logística del ecosistema."
+            description="Cada nodo conserva su identidad comercial, pero comparte inventario, estándares técnicos y coordinación del ecosistema Tujo."
           />
         </div>
 
@@ -211,7 +204,7 @@ export default function Home() {
             eyebrow="Muestra comercial"
             title="Productos y recursos en flujo constante de operación"
             meta={`${String(products.length).padStart(2, '0')} de ${CATALOG_TOTAL}+`}
-            accent="var(--accent-cyan)"
+            accent="var(--accent)"
             description="La oferta combina productos, consumibles, insumos y paquetes operativos para apoyar restaurantes, retail, industrias y puntos de distribución."
           />
         </div>

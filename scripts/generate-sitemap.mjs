@@ -3,8 +3,9 @@ import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { categories } from '../src/data/products.js'
 import { categorySlug } from '../src/lib/routes.js'
+import { BASE_URL } from '../src/lib/brand.js'
 
-const BASE = 'https://soverath.presentto.online'
+const BASE = BASE_URL
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
 const stores = JSON.parse(

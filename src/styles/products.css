@@ -64,7 +64,7 @@
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent-cyan);
+  color: var(--accent-bright);
   padding-right: 0.5rem;
 }
 
@@ -106,7 +106,7 @@
 
 .chip.is-active {
   color: #101010;
-  background: linear-gradient(135deg, #fff, #d9d9d9 55%, var(--accent-cyan));
+  background: linear-gradient(135deg, #fff, #d9d9d9 55%, var(--accent-bright));
   border-color: transparent;
   box-shadow: 0 12px 26px -16px rgba(255, 255, 255, 0.45);
 }
@@ -247,7 +247,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #101010;
-  background: linear-gradient(135deg, #fff, var(--accent-cyan));
+  background: linear-gradient(135deg, #fff, var(--accent-bright));
 }
 
 .product__flag--out {
@@ -407,7 +407,7 @@
 
 .products-empty__glyph {
   font-size: 2rem;
-  color: var(--accent-cyan);
+  color: var(--accent-bright);
 }
 
 .products-empty__title {

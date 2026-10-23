@@ -81,7 +81,7 @@ export function CatalogPage({ path, initialCategory = 'todas' }) {
         eyebrow={isCategory ? `Categoría · ${initialCategory}` : 'Sala de productos'}
         title={isCategory ? `Mayoreo de ${initialCategory}` : 'Catálogo de mayoreo'}
         meta={`${CATALOG_TOTAL}+ referencias`}
-        accent="var(--accent-cyan)"
+        accent="var(--accent)"
         description="Busca por nombre, SKU o etiqueta; filtra por nodo y categoría. Precios de mayoreo por caja, pack, kilogramo o litro según la referencia."
       />
 

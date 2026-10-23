@@ -5,8 +5,8 @@ import { setSeo } from '../lib/seo.js'
 export default function CookiesPage() {
   useEffect(() => {
     setSeo({
-      title: 'Política de cookies | Soverath Wholesales',
-      description: 'Política de cookies y preferencias del ecosistema Soverath Wholesales.',
+      title: 'Política de cookies | Tujo Wholesales',
+      description: 'Política de cookies y preferencias del ecosistema Tujo Wholesales.',
       path: '/cookies',
     })
   }, [])

@@ -1,6 +1,8 @@
 import { NavLink, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { stores } from '../data/stores.jsx'
+import ThemeToggle from './ThemeToggle.jsx'
+import { LEGAL_NAME, LOGO_PATH } from '../lib/brand.js'
 
 const links = [
   { to: '/', label: 'Índice', end: true },
@@ -28,13 +30,13 @@ export default function Nav() {
       <Link to="/" className="nav__brand" onClick={() => setOpen(false)}>
         <img
           className="nav__brand-logo"
-          src="/soverath-wholesales-logo.png"
-          alt="Soverath Wholesales"
+          src={LOGO_PATH}
+          alt={LEGAL_NAME}
           width="42"
           height="42"
         />
-        <span className="nav__brand-word" aria-label="Soverath Wholesales">
-          <span className="nav__brand-s">S</span>
+        <span className="nav__brand-word" aria-label={LEGAL_NAME}>
+          <span className="nav__brand-t">T</span>
           <span className="nav__brand-wholesales">WHOLESALES</span>
         </span>
       </Link>
@@ -102,9 +104,12 @@ export default function Nav() {
           </li>
         </ul>
 
-        <span className="nav__count mono" aria-hidden="true">
-          22 nodos activos
-        </span>
+        <div className="nav__end">
+          <ThemeToggle />
+          <span className="nav__count mono" aria-hidden="true">
+            22 nodos activos
+          </span>
+        </div>
       </div>
     </nav>
   )

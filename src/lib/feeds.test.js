@@ -61,16 +61,16 @@ describe('buildGoogleMerchant', () => {
     ])
   })
 
-  it('usa SKU como id/gtin/mpn, marca Soverath y availability por stock', () => {
+  it('usa SKU como id/gtin/mpn, marca Tujo y availability por stock', () => {
     expect(rows[0]).toEqual([
       'BT-SUP-014',
       'Omega 3 Wild — 60 cápsulas',
       expect.stringContaining('Botane'),
-      'https://soverath.presentto.online/tienda/botane',
-      'https://soverath.presentto.online/soverath-wholesales-logo.png',
+      'https://wtujo.presentto.online/tienda/botane',
+      'https://wtujo.presentto.online/tujo-og.png',
       '18.90 USD',
       'in_stock',
-      'Soverath',
+      'Tujo',
       'BT-SUP-014',
       'BT-SUP-014',
     ])
@@ -126,7 +126,7 @@ describe('buildMercadoLibre', () => {
       condition: 'new',
       available_quantity: 240,
       category_id: 'suplementos',
-      permalink: 'https://soverath.presentto.online/tienda/botane',
+      permalink: 'https://wtujo.presentto.online/tienda/botane',
       seller_custom_field: 'botane/BT-SUP-014',
     })
     expect(items[1].available_quantity).toBe(0)

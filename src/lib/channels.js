@@ -41,7 +41,7 @@ export function getChannel(id) {
 const whatsappText = ({ product, store }) => {
   const parts = ['Hola, quiero cotizar']
   if (product) parts.push(`${product.name} (${product.sku})`)
-  else parts.push(store ? `productos de ${store.name}` : 'mayoreo Soverath')
+  else parts.push(store ? `productos de ${store.name}` : 'mayoreo Tujo')
   if (product && store) parts.push(`en ${store.name}`)
   return `${parts.join(' ')}.`
 }

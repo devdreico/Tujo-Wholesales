@@ -1,6 +1,6 @@
-# Arquitectura del Ecosistema — Soverath Wholesales
+# Arquitectura del Ecosistema — Tujo Wholesales
 
-Este documento describe la arquitectura técnica, los contratos de datos y los flujos de operación de Soverath Wholesales, diseñado bajo el principio de **inventario único en bodega con salidas comerciales múltiples (orquestación multicanal)**.
+Este documento describe la arquitectura técnica, los contratos de datos y los flujos de operación de Tujo Wholesales, diseñado bajo el principio de **inventario único en bodega con salidas comerciales múltiples (orquestación multicanal)**.
 
 ---
 

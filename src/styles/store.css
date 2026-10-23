@@ -3,7 +3,7 @@
 /* ------------------------------------------------------------------ */
 
 .store-hero {
-  --accent: var(--accent-cyan);
+  --accent: var(--accent-bright);
   position: relative;
   width: 100%;
   border-radius: 32px;
@@ -183,7 +183,7 @@
 /* ------------------------------------------------------------------ */
 
 .domain-badge {
-  --accent: var(--accent-cyan);
+  --accent: var(--accent-bright);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -246,7 +246,7 @@
 }
 
 .store-siblings__item {
-  --accent: var(--accent-cyan);
+  --accent: var(--accent-bright);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;

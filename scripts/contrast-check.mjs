@@ -332,15 +332,30 @@ const { accents, slugs } = readStores()
 const styles = readStyles()
 
 const rootRules = []
+const darkRootRules = []
 const allRules = []
 for (const file of styles) {
   const rules = parseRules(file.css)
   allRules.push(...rules.map((r) => ({ ...r, file: file.rel })))
-  rootRules.push(...rules.filter((r) => r.selector === ':root'))
+  for (const rule of rules) {
+    const selectors = rule.selector.split(',').map((s) => s.trim())
+    const isDark = selectors.some((s) => /data-theme=['"]dark['"]/.test(s))
+    const isRootLike = selectors.some((s) => s === ':root' || s.startsWith(':root['))
+    if (isDark && isRootLike) darkRootRules.push(rule)
+    else if (isRootLike && !selectors.some((s) => /data-theme=['"]light['"]/.test(s))) {
+      rootRules.push(rule)
+    }
+  }
 }
 
 const vars = {}
 for (const rule of rootRules) {
+  for (const [key, value] of Object.entries(rule.decls)) {
+    if (key.startsWith('--')) vars[key] = value
+  }
+}
+/* El script valida sobre fondos oscuros: los tokens del tema dark tienen prioridad. */
+for (const rule of darkRootRules) {
   for (const [key, value] of Object.entries(rule.decls)) {
     if (key.startsWith('--')) vars[key] = value
   }
@@ -374,7 +389,7 @@ for (const rule of textRules) {
 const failures = []
 const warnings = []
 
-console.log('Contraste WCAG 2.x — Soverath Wholesales')
+console.log('Contraste WCAG 2.x — Tujo Wholesales')
 console.log(`Fondos de referencia: ${BG_FLOOR} (suelo) · ${BG_PANEL} (panel)`)
 console.log(`Umbrales: texto ${TEXT_MIN}:1 · UI/gráfico ${UI_MIN}:1 · texto pequeño < ${SMALL_PX}px`)
 console.log('')
@@ -383,10 +398,19 @@ console.log('== Tokens --* de src/index.css ==')
 console.log(
   `${pad('token', 20)} ${pad('valor', 30)} ${padL('#040506', 9)} ${padL('#0b0d10', 9)} ${pad('uso', 12)} ${padL('umbral', 7)} estado`
 )
+// Algunos tokens de texto nunca se usan sobre el fondo de página, sino sobre
+// un token de fondo emparejado (p.ej. texto sobre la píldora de nav activa).
+// En ese caso se mide el contraste contra ese fondo emparejado, no contra la página.
+const PAIRED_BG = {
+  '--nav-active-fg': '--nav-active-bg',
+  '--btn-primary-fg': '--btn-primary-bg',
+}
 const colorTokens = Object.entries(vars).filter(([, value]) => colorsOf(value, ctx).length > 0)
 for (const [name, value] of colorTokens) {
   const colors = colorsOf(value, ctx)
   const isText = textTokenNames.has(name)
+  const pairedBgName = PAIRED_BG[name]
+  const pairedBgColors = pairedBgName ? colorsOf(vars[pairedBgName] ?? '', ctx) : []
   const ratios = BACKGROUNDS.map((bg) => {
     const base = parseHex(bg)
     let worst = Infinity
@@ -396,9 +420,15 @@ for (const [name, value] of colorTokens) {
   const min = Math.min(...ratios)
   const threshold = isText ? TEXT_MIN : UI_MIN
   const ok = min >= threshold
-  if (isText && !ok) failures.push(`token ${name} (${value}) = ${min.toFixed(2)}:1 < ${TEXT_MIN}:1`)
+  // Si el token tiene fondo emparejado y ese contraste cumple, no es fallo real.
+  const pairedOk =
+    pairedBgColors.length > 0 &&
+    colors.every((c) => pairedBgColors.some((bg) => contrast(over(c, parseHex(toHex(bg))), parseHex(toHex(bg))) >= TEXT_MIN))
+  const isRealFailure = isText && !ok && !pairedOk
+  if (isRealFailure) failures.push(`token ${name} (${value}) = ${min.toFixed(2)}:1 < ${TEXT_MIN}:1`)
+  const stateLabel = ok ? 'OK' : pairedOk ? 'OK (pareado)' : isRealFailure ? 'FAIL' : 'info'
   console.log(
-    `${pad(name, 20)} ${pad(value.slice(0, 30), 30)} ${padL(ratios[0].toFixed(2), 9)} ${padL(ratios[1].toFixed(2), 9)} ${pad(isText ? 'texto' : 'superficie', 12)} ${padL(isText ? threshold.toFixed(1) : '—', 7)} ${ok ? 'OK' : isText ? 'FAIL' : 'info'}`
+    `${pad(name, 20)} ${pad(value.slice(0, 30), 30)} ${padL(ratios[0].toFixed(2), 9)} ${padL(ratios[1].toFixed(2), 9)} ${pad(isText ? 'texto' : 'superficie', 12)} ${padL(isText ? threshold.toFixed(1) : '—', 7)} ${stateLabel}`
   )
 }
 console.log('')

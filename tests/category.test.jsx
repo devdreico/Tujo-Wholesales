@@ -18,7 +18,7 @@ describe('Páginas de categoría', () => {
     expect(categories).toHaveLength(2)
     expect(categories).toEqual(['Ferretería', 'Ferretería'])
 
-    expect(document.title).toBe('Ferretería — mayoreo | Soverath Wholesales')
+    expect(document.title).toBe('Ferretería — mayoreo | Tujo Wholesales')
   })
 
   it('marca la categoría activa en la fila de enlaces del catálogo', () => {
@@ -38,6 +38,6 @@ describe('Páginas de categoría', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: 'Catálogo de mayoreo' })
     ).toBeInTheDocument()
-    expect(document.title).toBe('Productos y mayoreo (1000+ referencias) | Soverath Wholesales')
+    expect(document.title).toBe('Productos y mayoreo (1000+ referencias) | Tujo Wholesales')
   })
 })

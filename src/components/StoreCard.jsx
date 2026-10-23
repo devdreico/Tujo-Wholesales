@@ -6,7 +6,7 @@ export default function StoreCard({ store, index }) {
   return (
     <article
       className="card glass"
-      style={{ '--accent': 'var(--accent-cyan)', '--delay': `${(index % 12) * 55}ms` }}
+      style={{ '--accent': store.accent, '--delay': `${(index % 12) * 55}ms` }}
     >
       <span className="card__index mono" aria-hidden="true">
         {number}

@@ -1,7 +1,8 @@
 import { toCsv } from './csv.js'
+import { BASE_URL, BRAND, OG_IMAGE_PATH } from './brand.js'
 
-export const DEFAULT_BASE_URL = 'https://soverath.presentto.online'
-export const BRAND = 'Soverath'
+export const DEFAULT_BASE_URL = BASE_URL
+export { BRAND }
 export const CURRENCY = 'USD'
 export const FEED_FILES = [
   'google-merchant.csv',
@@ -37,7 +38,7 @@ export const FEED_HEADERS = {
 }
 
 const landing = (baseUrl, product) => `${baseUrl}/tienda/${product.storeSlug}`
-const imageUrl = (baseUrl) => `${baseUrl}/soverath-wholesales-logo.png`
+const imageUrl = (baseUrl) => `${baseUrl}${OG_IMAGE_PATH}`
 const money = (price) => `${Number(price).toFixed(2)} ${CURRENCY}`
 const googleAvailability = (product) => (product.stock > 0 ? 'in_stock' : 'out_of_stock')
 const metaAvailability = (product) => (product.stock > 0 ? 'in stock' : 'out of stock')

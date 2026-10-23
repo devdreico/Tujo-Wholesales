@@ -35,12 +35,12 @@ describe('setSeo', () => {
 
   it('actualiza el title del documento', () => {
     setSeo({
-      title: 'Catálogo de mayoreo | Soverath Wholesales',
+      title: 'Catálogo de mayoreo | Tujo Wholesales',
       description: 'Descripción de prueba',
       path: '/productos',
     })
 
-    expect(document.title).toBe('Catálogo de mayoreo | Soverath Wholesales')
+    expect(document.title).toBe('Catálogo de mayoreo | Tujo Wholesales')
   })
 
   it('actualiza la meta description', () => {
@@ -59,7 +59,7 @@ describe('setSeo', () => {
     setSeo({ title: 'Título', description: 'Descripción', path: '/tienda/ferreza' })
 
     expect(document.head.querySelector('link[rel="canonical"]').getAttribute('href')).toBe(
-      'https://soverath.presentto.online/tienda/ferreza'
+      'https://wtujo.presentto.online/tienda/ferreza'
     )
   })
 
@@ -67,24 +67,24 @@ describe('setSeo', () => {
     setSeo({ title: 'Título', description: 'Descripción', path: '/' })
 
     expect(document.head.querySelector('link[rel="canonical"]').getAttribute('href')).toBe(
-      'https://soverath.presentto.online/'
+      'https://wtujo.presentto.online/'
     )
-    expect(meta('meta[property="og:url"]')).toBe('https://soverath.presentto.online/')
+    expect(meta('meta[property="og:url"]')).toBe('https://wtujo.presentto.online/')
   })
 
   it('actualiza og:title y og:description junto al title', () => {
     setSeo({
-      title: 'Ferreza (Ferretería) | Soverath Wholesales',
+      title: 'Ferreza (Ferretería) | Tujo Wholesales',
       description: 'Herramientas y fijaciones.',
       path: '/tienda/ferreza',
     })
 
     expect(meta('meta[property="og:title"]')).toBe(
-      'Ferreza (Ferretería) | Soverath Wholesales'
+      'Ferreza (Ferretería) | Tujo Wholesales'
     )
     expect(meta('meta[property="og:description"]')).toBe('Herramientas y fijaciones.')
     expect(meta('meta[property="og:url"]')).toBe(
-      'https://soverath.presentto.online/tienda/ferreza'
+      'https://wtujo.presentto.online/tienda/ferreza'
     )
   })
 })

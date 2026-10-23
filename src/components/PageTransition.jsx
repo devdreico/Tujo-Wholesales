@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import { LEGAL_NAME } from '../lib/brand.js'
 
 /**
  * Envuelve cada ruta: al cambiar de pathname el nodo se remonta y ejecuta
@@ -28,7 +29,7 @@ export function RouteFallback() {
         aria-hidden="true"
         style={{ opacity: 0.6, letterSpacing: '0.35em', textTransform: 'uppercase' }}
       >
-        Soverath Wholesales
+        {LEGAL_NAME}
       </p>
     </div>
   )

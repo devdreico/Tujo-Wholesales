@@ -11,7 +11,7 @@ export default function ProductCard({ product, order = 0 }) {
     <article
       className="product glass"
       style={{
-        '--accent': 'var(--accent-cyan)',
+        '--accent': store?.accent ?? 'var(--accent)',
         '--delay': `${(order % 12) * 45}ms`,
       }}
     >

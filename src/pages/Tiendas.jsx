@@ -6,8 +6,8 @@ import { setSeo } from '../lib/seo.js'
 export default function TiendasPage() {
   useEffect(() => {
     setSeo({
-      title: 'Tiendas y nodos | Soverath Wholesales',
-      description: 'Directorio de tiendas del ecosistema Soverath Wholesales y acceso a cada nodo comercial.',
+      title: 'Tiendas y nodos | Tujo Wholesales',
+      description: 'Directorio de tiendas del ecosistema Tujo Wholesales y acceso a cada nodo comercial.',
       path: '/tiendas',
     })
   }, [])

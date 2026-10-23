@@ -23,7 +23,7 @@ describe('nodeSlugFromHost', () => {
 
   it('devuelve null cuando el hostname no pertenece a ningún nodo', () => {
     expect(nodeSlugFromHost(nodes, 'localhost', '/')).toBeNull()
-    expect(nodeSlugFromHost(nodes, 'soverath.presentto.online', '/')).toBeNull()
+    expect(nodeSlugFromHost(nodes, 'wtujo.presentto.online', '/')).toBeNull()
   })
 
   it('devuelve null con entradas incompletas', () => {

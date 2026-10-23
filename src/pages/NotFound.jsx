@@ -5,8 +5,8 @@ import { setSeo } from '../lib/seo.js'
 export default function NotFound() {
   useEffect(() => {
     setSeo({
-      title: 'Página no encontrada | Soverath Wholesales',
-      description: 'La ruta solicitada no existe dentro del ecosistema Soverath Wholesales.',
+      title: 'Página no encontrada | Tujo Wholesales',
+      description: 'La ruta solicitada no existe dentro del ecosistema Tujo Wholesales.',
       path: '/404',
     })
   }, [])

@@ -1,4 +1,4 @@
-# Soverath Wholesales
+# Tujo Wholesales
 
 Portal mayorista multicanal y ecosistema comercial orquestado. Conecta un inventario centralizado en bodega con múltiples salidas de venta (22 tiendas temáticas digitales, subdominios, portal general, WhatsApp, marketplaces y mostrador físico), con soporte de prerender SEO, feed generation, hub de pedidos interno y atribución de campañas multicanal (`utm_*` + `ch`).
 

@@ -7,7 +7,7 @@ describe('Integración de rutas', () => {
     const { container } = renderApp('/')
 
     expect(container.querySelectorAll('.stores__cell')).toHaveLength(22)
-    expect(screen.getByText('Veintidós tiendas, un mismo gateway')).toBeInTheDocument()
+    expect(screen.getByText('Veintidós tiendas, un mismo sistema operativo')).toBeInTheDocument()
     expect(
       screen.getByRole('link', { name: /Entrar a la sala de productos/ })
     ).toHaveAttribute('href', '/productos')

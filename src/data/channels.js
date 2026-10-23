@@ -21,9 +21,9 @@
 export const channels = [
   {
     id: 'web',
-    name: 'Portal Soverath',
+    name: 'Portal Tujo',
     type: 'web',
-    url: 'https://soverath.presentto.online',
+    url: 'https://wtujo.presentto.online',
     commissionPct: 0,
     enabled: true,
     ctaLabel: 'Comprar en el portal',

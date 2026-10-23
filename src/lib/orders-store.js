@@ -1,11 +1,14 @@
 import { channels } from '../data/channels.js'
+import { LEGACY } from './brand.js'
 
 /**
  * Repositorio de pedidos del hub `/admin`.
  *
  * Adaptador inyectable: por defecto escribe en `localStorage`
- * (clave `soverath.orders.v1`); para pasar a Supabase/API basta con
+ * (clave `tujo.orders.v1`); para pasar a Supabase/API basta con
  * `setOrdersAdapter({ read, write })` sin tocar la UI.
+ * Migra automáticamente la clave legada `soverath.orders.v1` del
+ * rebrand anterior la primera vez que se lee el almacén.
  *
  * `ORDER_CHANNELS` y `ORDER_CHANNEL_LABELS` se derivan del registro único
  * `src/data/channels.js`, para que un pedido use siempre el mismo id de
@@ -30,7 +33,20 @@ import { channels } from '../data/channels.js'
  * @property {(orders: Order[]) => void} write
  */
 
-export const ORDERS_STORAGE_KEY = 'soverath.orders.v1'
+export const ORDERS_STORAGE_KEY = 'tujo.orders.v1'
+
+const migrateLegacy = (store) => {
+  try {
+    const legacyRaw = store.getItem(LEGACY.ordersKey)
+    if (legacyRaw == null) return
+    if (store.getItem(ORDERS_STORAGE_KEY) == null) {
+      store.setItem(ORDERS_STORAGE_KEY, legacyRaw)
+    }
+    store.removeItem(LEGACY.ordersKey)
+  } catch {
+    // noop: la migración nunca debe romper la lectura
+  }
+}
 
 export const ORDER_STATUSES = [
   'nuevo',
@@ -84,6 +100,7 @@ const defaultAdapter = {
   read() {
     const store = storage()
     if (!store) return []
+    migrateLegacy(store)
     const raw = store.getItem(ORDERS_STORAGE_KEY)
     if (!raw) return []
     const parsed = JSON.parse(raw)

@@ -1,6 +1,6 @@
 # Análisis: de mayoreo digital a operación con presencia física
 
-Diagnóstico del sistema actual y hoja de ruta para convertir Soverath Wholesales de
+Diagnóstico del sistema actual y hoja de ruta para convertir Tujo Wholesales de
 "portal vitrina" en un mayorista con operación real, bodega y frente de venta.
 
 ---

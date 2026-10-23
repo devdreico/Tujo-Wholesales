@@ -7,6 +7,7 @@ import './index.css'
 import './styles/nav.css'
 import './styles/home.css'
 import './styles/light-theme.css'
+import './styles/dark-theme.css'
 import './styles/products.css'
 import './styles/store.css'
 

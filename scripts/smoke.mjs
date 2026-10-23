@@ -78,9 +78,9 @@ function createWindow(url) {
 const SCENARIOS = [
   {
     label: 'portada /',
-    url: 'http://soverath.presentto.online/',
+    url: 'http://wtujo.presentto.online/',
     checks: [
-      ['hero Soverath', (d) => d.body.innerHTML.includes('Soverath')],
+      ['hero Tujo', (d) => d.body.innerHTML.includes('Tujo')],
       ['directorio "Veintidós tiendas"', (d) => d.body.innerHTML.includes('Veintidós tiendas')],
       ['22 tarjetas de tienda', (d) => d.querySelectorAll('.card').length === 22],
       ['CTA a sala de productos', (d) => d.body.innerHTML.includes('sala de productos')],
@@ -89,7 +89,7 @@ const SCENARIOS = [
   },
   {
     label: 'catálogo /productos',
-    url: 'http://soverath.presentto.online/productos',
+    url: 'http://wtujo.presentto.online/productos',
     checks: [
       ['h1 Catálogo de mayoreo', (d) => d.querySelector('h1')?.textContent.includes('Catálogo')],
       ['SKU visible', (d) => d.body.innerHTML.includes('BT-SUP-014')],
@@ -101,7 +101,7 @@ const SCENARIOS = [
   },
   {
     label: 'búsqueda y filtros',
-    url: 'http://soverath.presentto.online/productos',
+    url: 'http://wtujo.presentto.online/productos',
     checks: [
       [
         'búsqueda "taladro" → 1 resultado',
@@ -149,7 +149,7 @@ const SCENARIOS = [
   },
   {
     label: 'categoría /productos/ferreteria',
-    url: 'http://soverath.presentto.online/productos/ferreteria',
+    url: 'http://wtujo.presentto.online/productos/ferreteria',
     checks: [
       ['h1 de categoría', (d) => d.querySelector('h1')?.textContent.toLowerCase().includes('ferreter')],
       ['producto ferretería visible', (d) => d.body.innerHTML.includes('Taladro percutor')],
@@ -164,7 +164,7 @@ const SCENARIOS = [
   },
   {
     label: 'tienda /tienda/ferreza',
-    url: 'http://soverath.presentto.online/tienda/ferreza',
+    url: 'http://wtujo.presentto.online/tienda/ferreza',
     checks: [
       ['hero Ferreza', (d) => d.querySelector('h1')?.textContent.includes('Ferreza')],
       ['badge subdominio', (d) => d.body.innerHTML.includes('ferreza.presentto.online')],
@@ -180,7 +180,7 @@ const SCENARIOS = [
   },
   {
     label: '404',
-    url: 'http://soverath.presentto.online/noexiste',
+    url: 'http://wtujo.presentto.online/noexiste',
     checks: [
       ['página de error', (d) => d.body.innerHTML.includes('Nodo fuera de cobertura')],
       ['canonical apunta a 404', (d) => d.head.querySelector('link[rel="canonical"]') !== null],

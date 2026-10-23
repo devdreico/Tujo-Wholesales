@@ -14,8 +14,8 @@ export default function StorePage() {
   useEffect(() => {
     if (!store) return
     setSeo({
-      title: `${store.name} (${store.category}) | Soverath Wholesales`,
-      description: `${store.description} Nodo ${store.index} del ecosistema Soverath Wholesales — accede a su apartado en ${store.subdomain}.`,
+      title: `${store.name} (${store.category}) | Tujo Wholesales`,
+      description: `${store.description} Nodo ${store.index} del ecosistema Tujo Wholesales — accede a su apartado en ${store.subdomain}.`,
       path: `/tienda/${store.slug}`,
     })
   }, [store])

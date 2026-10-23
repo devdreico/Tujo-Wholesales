@@ -5,17 +5,17 @@ test.describe('Portada', () => {
     await page.goto('/')
 
     await expect(page).toHaveTitle(
-      'Soverath Wholesales | Importador de productos y bodegas'
+      'Tujo Wholesales | Importador y mayorista con bodega propia'
     )
   })
 
-  test('identifica a Holding como matriz junto a su logotipo', async ({ page }) => {
+  test('posiciona el mayoreo con respaldo de Tujo Logistics', async ({ page }) => {
     await page.goto('/')
 
-    await expect(page.getByText(/Soverath Holding, casa matriz/)).toBeVisible()
+    await expect(page.getByText(/respaldado por Tujo Logistics/)).toBeVisible()
     await expect(
-      page.getByRole('img', { name: 'Logotipo de Soverath Holding' })
-    ).toHaveAttribute('src', '/soverath-logo.jpg')
+      page.getByRole('img', { name: 'Tujo Wholesales' }).first()
+    ).toHaveAttribute('src', '/tujo-logo.svg')
   })
 
   test('lista las 22 tarjetas del directorio de tiendas', async ({ page }) => {

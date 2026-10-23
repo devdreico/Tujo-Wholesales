@@ -438,7 +438,7 @@ export const stores = [
       'Prendas, calzado y accesorios de temporada para reventa y distribución.',
     url: 'https://novamoda.presentto.online',
     subdomain: 'novamoda.presentto.online',
-    accent: '#a855f7',
+    accent: '#c084fc',
     tags: ['moda', 'vestuario', 'temporada'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -572,7 +572,7 @@ export const stores = [
       'Repuestos, accesorios y mantenimiento automotriz para taller y particular.',
     url: 'https://motorix.presentto.online',
     subdomain: 'motorix.presentto.online',
-    accent: '#ef4444',
+    accent: '#f87171',
     tags: ['auto', 'repuestos', 'taller'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">

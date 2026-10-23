@@ -58,7 +58,7 @@ Errores (salen con código `1`): columnas requeridas faltantes, SKU duplicado (l
 - `feeds/whatsapp-catalog.csv` → `id,title,description,link,availability,price,brand,image_link`
 - `feeds/mercadolibre.json` → array con `id,title,description,price,currency_id,condition,available_quantity,category_id,permalink,seller_custom_field`
 
-Convenciones de los feeds: `id`/`gtin`/`mpn` = SKU, marca `Soverath`, precios `18.90 USD`, `availability` Google `in_stock`/`out_of_stock` y Meta/WhatsApp `in stock`/`out of stock`, `permalink`/`link` al nodo `/tienda/<storeSlug>`, `category_id` = categoría en slug (placeholder hasta mapear categorías reales de ML), imagen = logotipo del repositorio (los productos aún no tienen foto).
+Convenciones de los feeds: `id`/`gtin`/`mpn` = SKU, marca `Tujo`, precios `18.90 USD`, `availability` Google `in_stock`/`out_of_stock` y Meta/WhatsApp `in stock`/`out of stock`, `permalink`/`link` al nodo `/tienda/<storeSlug>`, `category_id` = categoría en slug (placeholder hasta mapear categorías reales de ML), imagen = logotipo del repositorio (los productos aún no tienen foto).
 
 ## Flujo recomendado
 

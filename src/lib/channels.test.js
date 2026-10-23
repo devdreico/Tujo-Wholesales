@@ -41,7 +41,7 @@ describe('channelCta', () => {
   it('construye la URL con atribución para producto y tienda', () => {
     const cta = channelCta(getChannel('web'), { product, store })
     const params = new URLSearchParams(cta.href.split('?')[1])
-    expect(cta.href.startsWith('https://soverath.presentto.online?')).toBe(true)
+    expect(cta.href.startsWith('https://wtujo.presentto.online?')).toBe(true)
     expect(params.get('ch')).toBe('web')
     expect(params.get('utm_medium')).toBe('web')
     expect(params.get('utm_campaign')).toBe('producto-BT-SUP-014')

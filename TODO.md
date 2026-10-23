@@ -1,4 +1,4 @@
-# TODO — Soverath Wholesales: plan de implementación
+# TODO — Tujo Wholesales: plan de implementación
 
 Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` hecho · 🔒 bloqueado en insumo del usuario
 Regla de calidad (aplica a toda tarea): **lint 0 warnings · tests verdes · build OK · sin errores a11y críticos · docs del área actualizadas**.

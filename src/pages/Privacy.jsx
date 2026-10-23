@@ -5,8 +5,8 @@ import { setSeo } from '../lib/seo.js'
 export default function PrivacyPage() {
   useEffect(() => {
     setSeo({
-      title: 'Política de privacidad | Soverath Wholesales',
-      description: 'Política de privacidad y tratamiento de datos del ecosistema Soverath Wholesales.',
+      title: 'Política de privacidad | Tujo Wholesales',
+      description: 'Política de privacidad y tratamiento de datos del ecosistema Tujo Wholesales.',
       path: '/privacidad',
     })
   }, [])
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
       </h1>
 
       <p>
-        Soverath Wholesales procesa información necesaria para operar el portal,
+        Tujo Wholesales procesa información necesaria para operar el portal,
         administrar pedidos, coordinar nodos y responder solicitudes comerciales de
         mayoristas, restaurantes, empresas y distribuidoras.
       </p>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { stores } from '../data/stores.jsx'
+import { LEGAL_NAME, PARENT_COMPANY, DOMAIN, LOGO_PATH } from '../lib/brand.js'
 
 export default function Footer() {
   return (
@@ -8,15 +9,16 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <img
-              className="footer__holding-logo"
-              src="/soverath-wholesales-logo.png"
-              alt="Logotipo de Soverath Wholesales"
+              className="footer__logo"
+              src={LOGO_PATH}
+              alt={`Logotipo de ${LEGAL_NAME}`}
               width="48"
               height="48"
             />
             <p className="footer__line">
-              Soverath Wholesales coordina inventario, envío y abastecimiento para sectores
-              de consumo, industria, gastronomía y retail en múltiples mercados.
+              {LEGAL_NAME} coordina inventario, importación y abastecimiento para
+              sectores de consumo, industria, gastronomía y retail en múltiples
+              mercados. Empresa derivada de {PARENT_COMPANY}.
             </p>
           </div>
 
@@ -59,7 +61,7 @@ export default function Footer() {
           </Link>
         </div>
         <p className="footer__copy mono">
-          © {new Date().getFullYear()} Soverath Wholesales · soverath.presentto.online
+          © {new Date().getFullYear()} {LEGAL_NAME} · {DOMAIN.replace('https://', '')}
         </p>
       </div>
     </footer>
