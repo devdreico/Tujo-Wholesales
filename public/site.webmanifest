@@ -4,8 +4,8 @@
   "description": "Portal mayorista del ecosistema Tujo Wholesales.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b0e11",
-  "theme_color": "#0b0e11",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "/favicon.svg",

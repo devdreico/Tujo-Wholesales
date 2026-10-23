@@ -1,19 +1,5 @@
 import { channelCtas } from '../lib/channels.js'
 
-const CHANNEL_COLORS = {
-  web: '#f2f2f2',
-  whatsapp: '#d8d8d8',
-  mercado: '#bdbdbd',
-  amazon: '#a2a2a2',
-  fisico: '#f4f4f4',
-}
-
-/**
- * Fila de CTAs hacia los canales de venta habilitados, con atribución
- * de campaña (`utm_*` + `ch`) ya aplicada por `channelCtas`.
- *
- * @param {{product?: object, store?: object, exclude?: string[], label?: string}} props
- */
 export default function ChannelActions({
   product,
   store,
@@ -31,14 +17,12 @@ export default function ChannelActions({
       {ctas.map((cta) => (
         <a
           key={cta.channel}
-          className="channel-cta mono"
+          className="channel-cta"
           href={cta.href}
           {...(cta.external
             ? { target: '_blank', rel: 'noopener noreferrer' }
             : {})}
-          style={{ '--cta-accent': CHANNEL_COLORS[cta.channel] ?? '#6ee7f9' }}
         >
-          <span className="channel-cta__dot" aria-hidden="true" />
           {cta.label}
         </a>
       ))}

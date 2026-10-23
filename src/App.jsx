@@ -1,11 +1,8 @@
 import { Suspense, useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import Background from './components/Background.jsx'
-import ScrollProgress from './components/ScrollProgress.jsx'
-import Nav from './components/Nav.jsx'
+import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
-import PageTransition, { RouteFallback } from './components/PageTransition.jsx'
 import { CONSENT_STORAGE_KEY, LEGACY } from './lib/brand.js'
 
 const readConsent = () => {
@@ -19,6 +16,16 @@ const readConsent = () => {
   } catch {
     return 'undecided'
   }
+}
+
+function RouteFallback() {
+  return (
+    <div className="container" style={{ paddingBlock: '6rem', textAlign: 'center' }}>
+      <span className="mono" style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+        Cargando…
+      </span>
+    </div>
+  )
 }
 
 export default function App() {
@@ -42,16 +49,12 @@ export default function App() {
       <a className="skip-link" href="#main-content">
         Saltar al contenido principal
       </a>
-      <Background />
-      <ScrollProgress />
-      <Nav />
+      <Header />
 
       <main className="page" id="main-content" tabIndex={-1}>
-        <PageTransition>
-          <Suspense fallback={<RouteFallback />}>
-            <Outlet />
-          </Suspense>
-        </PageTransition>
+        <Suspense fallback={<RouteFallback />}>
+          <Outlet />
+        </Suspense>
       </main>
 
       <Footer />

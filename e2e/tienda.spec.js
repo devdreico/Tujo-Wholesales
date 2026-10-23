@@ -27,7 +27,7 @@ test.describe('Ficha de tienda', () => {
     await page.goto('/tienda/ferreza')
 
     await expect(page.getByText('Taladro percutor 750 W')).toBeVisible()
-    await expect(page.locator('.product')).toHaveCount(2)
-    await expect(page.locator('.store-hero__back')).toHaveText('← Índice general')
+    await expect(page.locator('.product-card')).toHaveCount(2)
+    await expect(page.locator('.store-hero__back')).toHaveText('← Todas las tiendas')
   })
 })

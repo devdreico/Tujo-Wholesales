@@ -17,7 +17,7 @@ const formatDate = (iso) => {
   })} · ${date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}`
 }
 
-export default function AdminOrderCard({ order, onStatus, onCancel, delay = 0 }) {
+export default function AdminOrderCard({ order, onStatus, onCancel }) {
   const [confirming, setConfirming] = useState(false)
 
   const back = stepStatus(order.status, -1)
@@ -32,10 +32,9 @@ export default function AdminOrderCard({ order, onStatus, onCancel, delay = 0 })
 
   return (
     <li
-      className="admin-order glass"
+      className="admin-order"
       data-channel={order.channel}
       data-status={order.status}
-      style={{ '--delay': `${delay}ms` }}
     >
       <div className="admin-order__top">
         <span className="admin-order__id mono">{order.id}</span>

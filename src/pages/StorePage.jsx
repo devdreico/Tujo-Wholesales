@@ -15,7 +15,7 @@ export default function StorePage() {
     if (!store) return
     setSeo({
       title: `${store.name} (${store.category}) | Tujo Wholesales`,
-      description: `${store.description} Nodo ${store.index} del ecosistema Tujo Wholesales — accede a su apartado en ${store.subdomain}.`,
+      description: `${store.description} Nodo ${store.index} del ecosistema Tujo Wholesales.`,
       path: `/tienda/${store.slug}`,
     })
   }, [store])
@@ -26,39 +26,35 @@ export default function StorePage() {
   const siblings = stores.filter((s) => s.slug !== store.slug).slice(0, 6)
 
   return (
-    <>
+    <div className="route">
       <StoreHero store={store} productCount={items.length} />
 
-      <section className="store-catalog" aria-labelledby="store-catalog-title">
-        <div id="store-catalog-title">
+      <section className="section">
+        <div className="container">
           <SectionHeading
             eyebrow={`Nodo ${store.index} · catálogo`}
             title={`Existencias de ${store.name}`}
-            meta={`${items.length} refs`}
-            accent={store.accent}
-            description={`Muestra publicada de ${store.name}. El catálogo completo del nodo supera las ${CATALOG_TOTAL} referencias del ecosistema.`}
+            description={`Muestra publicada de ${store.name}. El catálogo completo del nodo supera las ${CATALOG_TOTAL} referencias.`}
           />
+          <ProductGrid items={items} emptyLabel={`Sin referencias publicadas en ${store.name}`} />
         </div>
-
-        <ProductGrid items={items} emptyLabel={`Sin referencias publicadas en ${store.name}`} />
       </section>
 
-      <section className="store-siblings" aria-label="Otros nodos">
-        <p className="store-siblings__label mono">Sigue explorando el ecosistema</p>
-        <ul className="store-siblings__list">
-          {siblings.map((s) => (
-            <li key={s.slug}>
-              <Link
-                className="store-siblings__item mono"
-                to={`/tienda/${s.slug}`}
-              >
-                <span className="store-siblings__dot" aria-hidden="true" />
-                {s.index} {s.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <section className="section" aria-label="Otros nodos">
+        <div className="container">
+          <p className="siblings__label mono">Sigue explorando</p>
+          <ul className="siblings__list">
+            {siblings.map((s) => (
+              <li key={s.slug}>
+                <Link className="siblings__item" to={`/tienda/${s.slug}`}>
+                  <span className="mono">{s.index}</span>
+                  {s.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
-    </>
+    </div>
   )
 }

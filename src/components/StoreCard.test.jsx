@@ -9,7 +9,7 @@ const ferreza = stores.find((store) => store.slug === 'ferreza')
 const renderCard = () =>
   render(
     <MemoryRouter>
-      <StoreCard store={ferreza} index={5} />
+      <StoreCard store={ferreza} />
     </MemoryRouter>
   )
 
@@ -18,7 +18,7 @@ describe('StoreCard', () => {
     renderCard()
 
     const internal = screen.getByRole('link', {
-      name: 'Abrir el apartado de Ferreza en el portal',
+      name: 'Ver Ferreza en el portal',
     })
 
     expect(internal).toHaveAttribute('href', '/tienda/ferreza')
@@ -28,28 +28,26 @@ describe('StoreCard', () => {
     renderCard()
 
     const external = screen.getByRole('link', {
-      name: 'Visitar el sitio externo de Ferreza',
+      name: 'Visitar sitio externo de Ferreza',
     })
 
     expect(external).toHaveAttribute('href', 'https://ferreza.presentto.online')
     expect(external).toHaveAttribute('target', '_blank')
     expect(external.getAttribute('rel')).toContain('noopener')
-    expect(external.getAttribute('aria-label')).toContain('Ferreza')
   })
 
-  it('aplica el acento cromático propio del nodo', () => {
-    const { container } = renderCard()
-
-    const card = container.querySelector('article.card')
-    expect(card).not.toBeNull()
-    expect(card.style.getPropertyValue('--accent').trim()).toBe(ferreza.accent)
-  })
-
-  it('muestra el slug, la categoría y el subdominio del nodo', () => {
+  it('muestra la categoría y el título del nodo', () => {
     renderCard()
 
-    expect(screen.getByText('ferreza')).toBeInTheDocument()
     expect(screen.getByText('Ferretería')).toBeInTheDocument()
-    expect(screen.getByText('ferreza.presentto.online')).toBeInTheDocument()
+    expect(screen.getByText(ferreza.title)).toBeInTheDocument()
+  })
+
+  it('renderiza el índice del nodo', () => {
+    const { container } = renderCard()
+
+    const card = container.querySelector('article.store-card')
+    expect(card).not.toBeNull()
+    expect(screen.getByText(ferreza.index)).toBeInTheDocument()
   })
 })

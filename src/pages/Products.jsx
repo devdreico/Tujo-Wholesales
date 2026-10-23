@@ -10,11 +10,6 @@ import { setSeo } from '../lib/seo.js'
 
 const PAGE = 12
 
-/**
- * Sala de catálogo compartida por /productos y /productos/<categoría>.
- * @param {{path: string, initialCategory?: string}} props Ruta SEO activa y
- * categoría preactivada ('todas' para el catálogo completo).
- */
 export function CatalogPage({ path, initialCategory = 'todas' }) {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState(initialCategory)
@@ -30,7 +25,6 @@ export function CatalogPage({ path, initialCategory = 'todas' }) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
-
     const list = products.filter((p) => {
       if (category !== 'todas' && p.category !== category) return false
       if (store !== 'todas' && p.storeSlug !== store) return false
@@ -42,106 +36,92 @@ export function CatalogPage({ path, initialCategory = 'todas' }) {
         p.tags.some((tag) => tag.includes(q))
       )
     })
-
     const sorted = [...list]
     if (sort === 'precio-asc') sorted.sort((a, b) => a.price - b.price)
     if (sort === 'precio-desc') sorted.sort((a, b) => b.price - a.price)
     if (sort === 'stock') sorted.sort((a, b) => b.stock - a.stock)
     if (sort === 'nombre') sorted.sort((a, b) => a.name.localeCompare(b.name, 'es'))
-
     return sorted
   }, [query, category, store, sort])
 
   const resetPage = () => setVisible(PAGE)
-
-  const onQuery = (value) => {
-    setQuery(value)
-    resetPage()
-  }
-  const onCategory = (value) => {
-    setCategory(value)
-    resetPage()
-  }
-  const onStore = (value) => {
-    setStore(value)
-    resetPage()
-  }
-  const onSort = (value) => {
-    setSort(value)
-    resetPage()
-  }
+  const onQuery = (v) => { setQuery(v); resetPage() }
+  const onCategory = (v) => { setCategory(v); resetPage() }
+  const onStore = (v) => { setStore(v); resetPage() }
+  const onSort = (v) => { setSort(v); resetPage() }
 
   const shown = filtered.slice(0, visible)
   const remaining = filtered.length - shown.length
 
   return (
-    <>
-      <SectionHeading
-        as="h1"
-        eyebrow={isCategory ? `Categoría · ${initialCategory}` : 'Sala de productos'}
-        title={isCategory ? `Mayoreo de ${initialCategory}` : 'Catálogo de mayoreo'}
-        meta={`${CATALOG_TOTAL}+ referencias`}
-        accent="var(--accent)"
-        description="Busca por nombre, SKU o etiqueta; filtra por nodo y categoría. Precios de mayoreo por caja, pack, kilogramo o litro según la referencia."
-      />
+    <div className="route">
+      <div className="container">
+        <SectionHeading
+          as="h1"
+          eyebrow={isCategory ? `Categoría · ${initialCategory}` : 'Catálogo'}
+          title={isCategory ? `Mayoreo de ${initialCategory}` : 'Catálogo de mayoreo'}
+          description="Busca por nombre, SKU o etiqueta; filtra por nodo y categoría."
+        />
 
-      <SearchFilters
-        query={query}
-        onQuery={onQuery}
-        categories={categories}
-        activeCategory={category}
-        onCategory={onCategory}
-        stores={stores}
-        activeStore={store}
-        onStore={onStore}
-        sort={sort}
-        onSort={onSort}
-        resultCount={filtered.length}
-      />
+        <SearchFilters
+          query={query}
+          onQuery={onQuery}
+          categories={categories}
+          activeCategory={category}
+          onCategory={onCategory}
+          stores={stores}
+          activeStore={store}
+          onStore={onStore}
+          sort={sort}
+          onSort={onSort}
+          resultCount={filtered.length}
+        />
 
-      <nav className="filters__row" aria-label="Categorías del catálogo">
-        <Link
-          className={`chip${path === '/productos' ? ' is-active' : ''}`}
-          aria-current={path === '/productos' ? 'page' : undefined}
-          to="/productos"
-        >
-          Todas
-        </Link>
-        {categories.map((categoryName) => {
-          const to = categoryPath(categoryName)
-          const active = path === to
-          return (
-            <Link
-              key={categoryName}
-              className={`chip${active ? ' is-active' : ''}`}
-              aria-current={active ? 'page' : undefined}
-              to={to}
+        <nav className="category-nav" aria-label="Categorías del catálogo">
+          <Link
+            className={`chip${path === '/productos' ? ' is-active' : ''}`}
+            aria-current={path === '/productos' ? 'page' : undefined}
+            to="/productos"
+          >
+            Todas
+          </Link>
+          {categories.map((name) => {
+            const to = categoryPath(name)
+            const active = path === to
+            return (
+              <Link
+                key={name}
+                className={`chip${active ? ' is-active' : ''}`}
+                aria-current={active ? 'page' : undefined}
+                to={to}
+              >
+                {name}
+              </Link>
+            )
+          })}
+        </nav>
+
+        <ProductGrid items={shown} />
+
+        {remaining > 0 ? (
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <button
+              type="button"
+              className="btn btn--outline"
+              onClick={() => setVisible((v) => v + PAGE)}
             >
-              {categoryName}
-            </Link>
-          )
-        })}
-      </nav>
-
-      <ProductGrid items={shown} />
-
-      {remaining > 0 ? (
-        <button
-          type="button"
-          className="btn btn--ghost load-more mono"
-          onClick={() => setVisible((v) => v + PAGE)}
-        >
-          Cargar más · quedan {remaining}
-          <span aria-hidden="true">↓</span>
-        </button>
-      ) : (
-        <p className="load-more-note mono">
-          {filtered.length === products.length
-            ? `Mostrando las ${products.length} referencias publicadas de la muestra · el volcado completo supera las ${CATALOG_TOTAL}`
-            : 'Fin de los resultados para este filtro'}
-        </p>
-      )}
-    </>
+              Cargar más ({remaining} restantes)
+            </button>
+          </div>
+        ) : (
+          <p className="load-note mono">
+            {filtered.length === products.length
+              ? `Mostrando ${products.length} referencias de la muestra · el catálogo completo supera las ${CATALOG_TOTAL}`
+              : 'Fin de los resultados'}
+          </p>
+        )}
+      </div>
+    </div>
   )
 }
 

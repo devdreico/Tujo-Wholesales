@@ -9,7 +9,7 @@ export default function AdminFilters({ filters, onChange, resultCount = 0 }) {
   const set = (patch) => onChange({ ...filters, ...patch })
 
   return (
-    <section className="admin-filters glass" aria-label="Filtros de pedidos">
+    <section className="admin-filters" aria-label="Filtros de pedidos">
       <div className="admin-filters__search">
         <label className="admin-filters__label mono" htmlFor="admin-orders-search">
           Buscar

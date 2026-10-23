@@ -81,9 +81,9 @@ const SCENARIOS = [
     url: 'http://wtujo.presentto.online/',
     checks: [
       ['hero Tujo', (d) => d.body.innerHTML.includes('Tujo')],
-      ['directorio "Veintidós tiendas"', (d) => d.body.innerHTML.includes('Veintidós tiendas')],
-      ['22 tarjetas de tienda', (d) => d.querySelectorAll('.card').length === 22],
-      ['CTA a sala de productos', (d) => d.body.innerHTML.includes('sala de productos')],
+      ['directorio "22 tiendas"', (d) => d.body.innerHTML.includes('22 tiendas')],
+      ['22 tarjetas de tienda', (d) => d.querySelectorAll('.store-card').length === 22],
+      ['CTA a catálogo', (d) => d.body.innerHTML.includes('catálogo completo')],
       ['CTA de canal en destacados', (d) => Boolean(d.querySelector('.channel-cta'))],
     ],
   },
@@ -114,7 +114,7 @@ const SCENARIOS = [
           )?.set
           setter.call(input, 'taladro')
           input.dispatchEvent(new View.Event('input', { bubbles: true }))
-          return d.querySelectorAll('.product').length === 1
+          return d.querySelectorAll('.product-card').length === 1
         },
       ],
       [
@@ -140,7 +140,7 @@ const SCENARIOS = [
           await wait(300)
           return (
             chip.getAttribute('aria-pressed') === 'true' &&
-            d.querySelectorAll('.product').length > 0 &&
+            d.querySelectorAll('.product-card').length > 0 &&
             !d.body.innerHTML.includes('Taladro percutor')
           )
         },
@@ -182,7 +182,7 @@ const SCENARIOS = [
     label: '404',
     url: 'http://wtujo.presentto.online/noexiste',
     checks: [
-      ['página de error', (d) => d.body.innerHTML.includes('Nodo fuera de cobertura')],
+      ['página de error', (d) => d.body.innerHTML.includes('Página no encontrada')],
       ['canonical apunta a 404', (d) => d.head.querySelector('link[rel="canonical"]') !== null],
     ],
   },

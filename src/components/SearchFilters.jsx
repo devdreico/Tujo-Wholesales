@@ -11,23 +11,19 @@ export default function SearchFilters({
   onSort,
   resultCount,
 }) {
-  const input = (e) => onQuery(e.target.value)
-
   return (
-    <div className="filters glass">
+    <div className="filters">
       <div className="filters__search">
-        <span className="filters__search-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <circle cx="11" cy="11" r="6.5" stroke="currentColor" strokeWidth="1.7" />
-            <path d="m16 16 4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-          </svg>
-        </span>
+        <svg className="filters__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.3" />
+          <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        </svg>
         <input
           className="filters__input"
           type="search"
-          placeholder="Buscar por nombre, SKU o etiqueta…"
+          placeholder="Buscar productos…"
           value={query}
-          onChange={input}
+          onChange={(e) => onQuery(e.target.value)}
           aria-label="Buscar productos"
         />
         <span className="filters__count mono" aria-live="polite">
@@ -35,7 +31,7 @@ export default function SearchFilters({
         </span>
       </div>
 
-      <div className="filters__row" role="group" aria-label="Filtrar por categoría">
+      <div className="filters__chips" role="group" aria-label="Filtrar por categoría">
         <button
           type="button"
           className={`chip${activeCategory === 'todas' ? ' is-active' : ''}`}
@@ -57,30 +53,26 @@ export default function SearchFilters({
         ))}
       </div>
 
-      <div className="filters__row filters__row--split">
+      <div className="filters__selects">
         <div className="filters__select-wrap">
-          <label className="filters__label mono" htmlFor="filter-store">
-            Tienda
-          </label>
+          <label className="filters__label mono" htmlFor="filter-store">Tienda</label>
           <select
             id="filter-store"
             className="filters__select"
             value={activeStore}
             onChange={(e) => onStore(e.target.value)}
           >
-            <option value="todas">Todas las tiendas</option>
+            <option value="todas">Todas</option>
             {stores.map((store) => (
               <option key={store.slug} value={store.slug}>
-                {store.index} — {store.name}
+                {store.name}
               </option>
             ))}
           </select>
         </div>
 
         <div className="filters__select-wrap">
-          <label className="filters__label mono" htmlFor="filter-sort">
-            Orden
-          </label>
+          <label className="filters__label mono" htmlFor="filter-sort">Orden</label>
           <select
             id="filter-sort"
             className="filters__select"

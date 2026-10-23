@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#0b0e11" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Tujo Wholesales" />
     <meta
       name="keywords"
-      content="Tujo Wholesales, Tujo Logistics, mayoreo, importador, bodegas, inventario, catálogo mayorista, 22 tiendas, tiendas afiliadas, salud natural, mascotas, belleza, tecnología, cocina, ferretería, moda, alimentos, Botane, Viking Dogs, Lun & Lou, Esturel, Knifopics"
+      content="Tujo Wholesales, Tujo Logistics, mayoreo, importador, bodegas, inventario, catálogo mayorista, 22 tiendas, tiendas afiliadas, salud natural, mascotas, belleza, tecnología, cocina, ferretería, moda, alimentos"
     />
     <meta name="format-detection" content="telephone=no" />
     <meta name="application-name" content="Tujo Wholesales" />
@@ -27,23 +27,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
-
-    <!-- Theme bootstrap (evita FOUC del dual light/dark) -->
-    <script>
-      ;(function () {
-        try {
-          var t = localStorage.getItem('tujo-theme')
-          if (t !== 'light' && t !== 'dark') {
-            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-          }
-          document.documentElement.setAttribute('data-theme', t)
-          var m = document.querySelector('meta[name="theme-color"]')
-          if (m) m.setAttribute('content', t === 'dark' ? '#0b0e11' : '#f6f4f0')
-        } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'light')
-        }
-      })()
-    </script>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

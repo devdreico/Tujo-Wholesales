@@ -11,7 +11,7 @@ describe('Interacción en /productos', () => {
     await user.type(screen.getByLabelText('Buscar productos'), 'taladro')
 
     expect(screen.getByText('001 refs')).toBeInTheDocument()
-    expect(container.querySelectorAll('.product')).toHaveLength(1)
+    expect(container.querySelectorAll('.product-card')).toHaveLength(1)
     expect(screen.getByText('Taladro percutor 750 W')).toBeInTheDocument()
   })
 
@@ -22,7 +22,7 @@ describe('Interacción en /productos', () => {
     await user.click(screen.getByRole('button', { name: 'Cocina' }))
 
     expect(screen.getByText('002 refs')).toBeInTheDocument()
-    const visibleCategories = [...container.querySelectorAll('.product__category')].map(
+    const visibleCategories = [...container.querySelectorAll('.product-card__category')].map(
       (node) => node.textContent
     )
     expect(visibleCategories.length).toBeGreaterThan(0)
@@ -37,8 +37,8 @@ describe('Interacción en /productos', () => {
     await user.type(screen.getByLabelText('Buscar productos'), 'zzzzzz')
 
     expect(screen.getByText('000 refs')).toBeInTheDocument()
-    expect(container.querySelector('.products-empty')).not.toBeNull()
-    expect(screen.getByRole('status')).toHaveClass('products-empty')
-    expect(container.querySelectorAll('.product')).toHaveLength(0)
+    expect(container.querySelector('.empty-state')).not.toBeNull()
+    expect(screen.getByRole('status')).toHaveClass('empty-state')
+    expect(container.querySelectorAll('.product-card')).toHaveLength(0)
   })
 })

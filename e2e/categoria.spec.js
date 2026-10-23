@@ -20,7 +20,7 @@ test.describe('Página de categoría', () => {
     await expect(
       page.getByRole('heading', { level: 1, name: 'Mayoreo de Ferretería' })
     ).toBeVisible()
-    await expect(page.locator('.product')).toHaveCount(2)
+    await expect(page.locator('.product-card')).toHaveCount(2)
 
     await page.waitForLoadState('networkidle')
 

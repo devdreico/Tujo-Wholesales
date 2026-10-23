@@ -7,7 +7,7 @@ test.describe('Sala de productos', () => {
     await page.getByLabel('Buscar productos').fill('taladro')
 
     await expect(page.locator('.filters__count')).toHaveText('001 refs')
-    await expect(page.locator('.product')).toHaveCount(1)
+    await expect(page.locator('.product-card')).toHaveCount(1)
     await expect(page.getByText('Taladro percutor 750 W')).toBeVisible()
   })
 
@@ -17,9 +17,9 @@ test.describe('Sala de productos', () => {
     await page.getByRole('button', { name: 'Cocina', exact: true }).click()
 
     await expect(page.locator('.filters__count')).toHaveText('002 refs')
-    await expect(page.locator('.product')).toHaveCount(2)
+    await expect(page.locator('.product-card')).toHaveCount(2)
 
-    const categories = await page.locator('.product__category').allTextContents()
+    const categories = await page.locator('.product-card__category').allTextContents()
     expect(categories).toHaveLength(2)
     for (const category of categories) {
       expect(category).toBe('Cocina')
@@ -35,7 +35,7 @@ test.describe('Sala de productos', () => {
     await page.getByLabel('Buscar productos').fill('zzzzzz')
 
     await expect(page.locator('.filters__count')).toHaveText('000 refs')
-    await expect(page.locator('.products-empty')).toBeVisible()
-    await expect(page.locator('.product')).toHaveCount(0)
+    await expect(page.locator('.empty-state')).toBeVisible()
+    await expect(page.locator('.product-card')).toHaveCount(0)
   })
 })

@@ -4,65 +4,63 @@ import { LEGAL_NAME, PARENT_COMPANY, DOMAIN, LOGO_PATH } from '../lib/brand.js'
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__inner glass">
-        <div className="footer__top">
-          <div className="footer__brand">
+    <footer className="site-footer">
+      <div className="site-footer__inner container">
+        <div className="site-footer__top">
+          <div className="site-footer__brand">
             <img
-              className="footer__logo"
+              className="site-footer__logo"
               src={LOGO_PATH}
-              alt={`Logotipo de ${LEGAL_NAME}`}
-              width="48"
-              height="48"
+              alt=""
+              width="28"
+              height="28"
             />
-            <p className="footer__line">
-              {LEGAL_NAME} coordina inventario, importación y abastecimiento para
-              sectores de consumo, industria, gastronomía y retail en múltiples
-              mercados. Empresa derivada de {PARENT_COMPANY}.
-            </p>
+            <div>
+              <p className="site-footer__name">{LEGAL_NAME}</p>
+              <p className="site-footer__desc">
+                Coordinamos inventario, importación y abastecimiento para
+                consumo, industria, gastronomía y retail. Empresa derivada de{' '}
+                {PARENT_COMPANY}.
+              </p>
+            </div>
           </div>
 
-          <nav className="footer__nav" aria-label="Navegación del pie">
-            <Link className="footer__link mono" to="/">
-              Índice
-            </Link>
-            <Link className="footer__link mono" to="/productos">
-              Productos
-            </Link>
-            <Link className="footer__link mono" to="/tiendas">
-              Tiendas
-            </Link>
-            <Link className="footer__link mono" to="/operacion">
-              Operación
-            </Link>
-          </nav>
+          <div className="site-footer__cols">
+            <nav className="site-footer__col" aria-label="Portal">
+              <p className="site-footer__col-title">Portal</p>
+              <Link to="/">Inicio</Link>
+              <Link to="/productos">Productos</Link>
+              <Link to="/tiendas">Tiendas</Link>
+              <Link to="/operacion">Operación</Link>
+            </nav>
+
+            <nav className="site-footer__col" aria-label="Legal">
+              <p className="site-footer__col-title">Legal</p>
+              <Link to="/cookies">Cookies</Link>
+              <Link to="/privacidad">Privacidad</Link>
+            </nav>
+          </div>
         </div>
 
-        <ul className="footer__stores">
-          {stores.map((store) => (
-            <li key={store.slug}>
-              <Link className="footer__store" to={`/tienda/${store.slug}`}>
-                <span
-                  className="footer__store-dot"
-                  aria-hidden="true"
-                />
-                {store.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="footer__meta">
-          <Link className="footer__legal mono" to="/cookies">
-            Cookies
-          </Link>
-          <Link className="footer__legal mono" to="/privacidad">
-            Privacidad
-          </Link>
+        <div className="site-footer__stores">
+          <p className="site-footer__col-title">Tiendas</p>
+          <ul className="site-footer__store-list">
+            {stores.map((store) => (
+              <li key={store.slug}>
+                <Link to={`/tienda/${store.slug}`}>{store.name}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        <p className="footer__copy mono">
-          © {new Date().getFullYear()} {LEGAL_NAME} · {DOMAIN.replace('https://', '')}
-        </p>
+
+        <div className="site-footer__bottom">
+          <p className="site-footer__copy">
+            © {new Date().getFullYear()} {LEGAL_NAME}
+          </p>
+          <p className="site-footer__domain">
+            {DOMAIN.replace('https://', '')}
+          </p>
+        </div>
       </div>
     </footer>
   )

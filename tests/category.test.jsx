@@ -12,7 +12,7 @@ describe('Páginas de categoría', () => {
     expect(screen.getByText('002 refs')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Ferretería' })).toHaveClass('is-active')
 
-    const categories = [...container.querySelectorAll('.product__category')].map(
+    const categories = [...container.querySelectorAll('.product-card__category')].map(
       (node) => node.textContent
     )
     expect(categories).toHaveLength(2)

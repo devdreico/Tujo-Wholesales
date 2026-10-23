@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import SectionHeading from '../components/SectionHeading.jsx'
 import { setSeo } from '../lib/seo.js'
 import { LEGAL_NAME, PARENT_COMPANY } from '../lib/brand.js'
 
@@ -23,33 +24,29 @@ export default function OperacionPage() {
   }, [])
 
   return (
-    <section className="page-shell glass" style={{ padding: '2rem', borderRadius: '28px' }}>
-      <p className="section-heading__eyebrow mono" style={{ marginBottom: '1rem' }}>
-        <span className="section-heading__pulse" aria-hidden="true" />
-        Cobertura y operación
-      </p>
-      <h1 style={{ marginTop: 0, fontSize: 'clamp(2rem, 4vw, 3rem)', letterSpacing: '-0.06em' }}>
-        Abastecimiento y distribución mayorista.
-      </h1>
-      <p>
-        {LEGAL_NAME} es la unidad de mayoreo del ecosistema {PARENT_COMPANY}:
-        coordina inventario, compra por volumen y movimiento de productos para
-        clientes que requieren flujo constante, respuesta rápida y conexión
-        entre productores, bodegas y puntos de venta.
-      </p>
+    <div className="route">
+      <div className="container">
+        <SectionHeading
+          eyebrow="Cobertura"
+          title="Abastecimiento y distribución mayorista"
+          description={`${LEGAL_NAME} es la unidad de mayoreo del ecosistema ${PARENT_COMPANY}: coordina inventario, compra por volumen y movimiento de productos.`}
+        />
 
-      <div className="coverage-grid" style={{ marginTop: '1.5rem' }}>
-        {markets.map((market) => (
-          <div key={market.name} className="coverage-card glass">
-            <h3>{market.name}</h3>
-            <p>{market.description}</p>
-          </div>
-        ))}
-      </div>
+        <div className="markets-grid">
+          {markets.map((market) => (
+            <div key={market.name} className="market-card">
+              <h3>{market.name}</h3>
+              <p>{market.description}</p>
+            </div>
+          ))}
+        </div>
 
-      <div style={{ marginTop: '2rem' }}>
-        <Link to="/tiendas">Ver directorio de tiendas</Link>
+        <div style={{ marginTop: '2rem' }}>
+          <Link className="btn btn--outline" to="/tiendas">
+            Ver directorio de tiendas →
+          </Link>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }

@@ -4,12 +4,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App from './App.jsx'
 import { setSeo } from './lib/seo.js'
 import './index.css'
-import './styles/nav.css'
+import './styles/header.css'
+import './styles/footer.css'
 import './styles/home.css'
-import './styles/light-theme.css'
-import './styles/dark-theme.css'
-import './styles/products.css'
+import './styles/catalog.css'
 import './styles/store.css'
+import './styles/admin.css'
 
 const HomeEntry = lazy(() => import('./components/HomeEntry.jsx'))
 const Products = lazy(() => import('./pages/Products.jsx'))
@@ -21,7 +21,6 @@ const CookiesPage = lazy(() => import('./pages/Cookies.jsx'))
 const PrivacyPage = lazy(() => import('./pages/Privacy.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
-/** /admin no se prerendera (localStorage en primer render): noindex al cargar su chunk. */
 const Admin = lazy(() =>
   import('./pages/Admin.jsx').then((mod) => {
     setSeo({ path: '/admin' })
@@ -29,10 +28,6 @@ const Admin = lazy(() =>
   })
 )
 
-/**
- * Árbol de rutas del cliente: una vuelta de Suspense en App por chunk de ruta.
- * El prerender replica esta estructura con imports estáticos en prerender-entry.jsx.
- */
 export function AppTree() {
   return (
     <StrictMode>

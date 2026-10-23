@@ -6,10 +6,10 @@ describe('Integración de rutas', () => {
   it('la raíz pinta la portada con las 22 tarjetas del directorio', () => {
     const { container } = renderApp('/')
 
-    expect(container.querySelectorAll('.stores__cell')).toHaveLength(22)
-    expect(screen.getByText('Veintidós tiendas, un mismo sistema operativo')).toBeInTheDocument()
+    expect(container.querySelectorAll('.store-card')).toHaveLength(22)
+    expect(screen.getByText('22 tiendas, un mismo sistema')).toBeInTheDocument()
     expect(
-      screen.getByRole('link', { name: /Entrar a la sala de productos/ })
+      screen.getByRole('link', { name: /Ver catálogo completo/ })
     ).toHaveAttribute('href', '/productos')
   })
 
@@ -36,7 +36,7 @@ describe('Integración de rutas', () => {
     renderApp('/tienda/inexistente')
 
     expect(
-      screen.getByRole('heading', { name: 'Nodo fuera de cobertura' })
+      screen.getByRole('heading', { name: 'Página no encontrada' })
     ).toBeInTheDocument()
   })
 
@@ -44,8 +44,8 @@ describe('Integración de rutas', () => {
     renderApp('/cualquiera')
 
     expect(
-      screen.getByRole('heading', { name: 'Nodo fuera de cobertura' })
+      screen.getByRole('heading', { name: 'Página no encontrada' })
     ).toBeInTheDocument()
-    expect(screen.getByText('error 404')).toBeInTheDocument()
+    expect(screen.getByText('Error 404')).toBeInTheDocument()
   })
 })

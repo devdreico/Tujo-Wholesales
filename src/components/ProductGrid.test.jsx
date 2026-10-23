@@ -15,11 +15,11 @@ describe('ProductGrid', () => {
   it('muestra el estado vacío cuando no hay resultados', () => {
     const { container } = renderGrid([])
 
-    const empty = container.querySelector('.products-empty')
+    const empty = container.querySelector('.empty-state')
     expect(empty).not.toBeNull()
-    expect(screen.getByRole('status')).toHaveClass('products-empty')
+    expect(screen.getByRole('status')).toHaveClass('empty-state')
     expect(screen.getByText('Sin resultados')).toBeInTheDocument()
-    expect(container.querySelectorAll('.product')).toHaveLength(0)
+    expect(container.querySelectorAll('.product-card')).toHaveLength(0)
   })
 
   it('personaliza el título del estado vacío', () => {
@@ -37,7 +37,7 @@ describe('ProductGrid', () => {
   it('renderiza una tarjeta por producto con su SKU visible', () => {
     const { container } = renderGrid([products[0], products[10]])
 
-    expect(container.querySelectorAll('.product')).toHaveLength(2)
+    expect(container.querySelectorAll('.product-card')).toHaveLength(2)
     expect(screen.getByText('BT-SUP-014')).toBeInTheDocument()
     expect(screen.getByText('FZ-HRR-203')).toBeInTheDocument()
     expect(screen.queryByText('Sin resultados')).not.toBeInTheDocument()

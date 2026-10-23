@@ -31,7 +31,7 @@ export default function AdminOrderForm({ onCreate }) {
   }
 
   return (
-    <section className="admin-form glass" aria-labelledby="admin-form-title">
+    <section className="admin-form" aria-labelledby="admin-form-title">
       <div className="admin-form__head">
         <h2 className="admin__subtitle" id="admin-form-title">
           Nuevo pedido

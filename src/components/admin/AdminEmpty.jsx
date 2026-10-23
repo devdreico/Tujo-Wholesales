@@ -1,6 +1,6 @@
 export default function AdminEmpty({ glyph = '◈', title, hint, actionLabel, onAction }) {
   return (
-    <div className="admin-empty glass" role="status">
+    <div className="admin-empty" role="status">
       <span className="admin-empty__glyph" aria-hidden="true">
         {glyph}
       </span>

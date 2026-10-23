@@ -23,7 +23,6 @@ export const LOGO_URL = `${DOMAIN}${LOGO_PATH}`
 export const OG_IMAGE_URL = `${DOMAIN}${OG_IMAGE_PATH}`
 
 export const CONSENT_STORAGE_KEY = 'tujo-cookie-consent'
-export const THEME_STORAGE_KEY = 'tujo-theme'
 
 export const LEGACY = {
   domain: 'https://soverath.presentto.online',

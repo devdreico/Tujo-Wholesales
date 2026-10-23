@@ -12,21 +12,26 @@ export default function NotFound() {
   }, [])
 
   return (
-    <section className="notfound">
-      <p className="notfound__code mono">error 404</p>
-      <h1 className="notfound__title">Nodo fuera de cobertura</h1>
-      <p className="notfound__lead">
-        La ruta que intentas abrir no forma parte del directorio del ecosistema.
-      </p>
-      <div className="notfound__actions">
-        <Link className="btn btn--primary" to="/">
-          Volver al índice
-          <span aria-hidden="true">→</span>
-        </Link>
-        <Link className="btn btn--ghost mono" to="/productos">
-          /productos
-        </Link>
+    <div className="route">
+      <div className="container container--narrow" style={{ textAlign: 'center', paddingBlock: '6rem' }}>
+        <p className="mono" style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
+          Error 404
+        </p>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', marginBottom: '1rem' }}>
+          Página no encontrada
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+          La ruta que intentas abrir no existe dentro del directorio.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link className="btn btn--primary" to="/">
+            Volver al inicio
+          </Link>
+          <Link className="btn btn--outline" to="/productos">
+            Ver productos
+          </Link>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }

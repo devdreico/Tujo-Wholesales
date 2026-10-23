@@ -3,18 +3,20 @@ import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = resolve(fileURLToPath(new URL('.', import.meta.url)), '..')
-const BG_FLOOR = '#040506'
-const BG_PANEL = '#0b0d10'
+const BG_FLOOR = '#ffffff'
+const BG_PANEL = '#fafafa'
 const BACKGROUNDS = [BG_FLOOR, BG_PANEL]
 const TEXT_MIN = 4.5
 const UI_MIN = 3
 const SMALL_PX = 14
 const OWNED = new Set([
   'src/index.css',
-  'src/styles/nav.css',
+  'src/styles/header.css',
+  'src/styles/footer.css',
   'src/styles/home.css',
-  'src/styles/products.css',
+  'src/styles/catalog.css',
   'src/styles/store.css',
+  'src/styles/admin.css',
 ])
 const SKIP_COLORS = new Set([
   'none',
