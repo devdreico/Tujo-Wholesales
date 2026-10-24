@@ -3,41 +3,44 @@ import { screen } from '@testing-library/react'
 import { renderApp } from './helpers.jsx'
 
 describe('Integración de rutas', () => {
-  it('la raíz pinta la portada con las 22 tarjetas del directorio', () => {
+  it('la raíz presenta el modelo, la escala y las rutas corporativas', () => {
     const { container } = renderApp('/')
 
-    expect(container.querySelectorAll('.store-card')).toHaveLength(22)
-    expect(screen.getByText('22 tiendas, un mismo sistema')).toBeInTheDocument()
     expect(
-      screen.getByRole('link', { name: /Ver catálogo completo/ })
-    ).toHaveAttribute('href', '/productos')
-  })
-
-  it('/productos pinta el catálogo de mayoreo', () => {
-    renderApp('/productos')
-
-    expect(
-      screen.getByRole('heading', { name: 'Catálogo de mayoreo' })
+      screen.getByRole('heading', { name: /Una red comercial. Una operación que la conecta/ })
     ).toBeInTheDocument()
-    expect(screen.getByLabelText('Buscar productos')).toBeInTheDocument()
-  })
-
-  it('/tienda/ferreza pinta la ficha de la tienda con su catálogo', () => {
-    renderApp('/tienda/ferreza')
-
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Ferreza')
-    expect(screen.getByText('Taladro percutor 750 W')).toBeInTheDocument()
-    expect(document.querySelector('.domain-badge')).toHaveTextContent(
-      'ferreza.presentto.online'
+    expect(document.querySelector('.reach__figure--wide .reach__value').textContent).toBe('500K+')
+    expect(screen.getByRole('link', { name: /Tiendas oficiales/ })).toHaveAttribute(
+      'href',
+      '/tiendas',
     )
+    expect(container.querySelector('.product-card')).toBeNull()
   })
 
-  it('/tienda/inexistente cae en el 404', () => {
-    renderApp('/tienda/inexistente')
+  it('/tiendas solo muestra redirecciones oficiales confirmadas', () => {
+    renderApp('/tiendas')
 
-    expect(
-      screen.getByRole('heading', { name: 'Página no encontrada' })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Marcas propias. Red compartida.' })).toBeInTheDocument()
+    expect(screen.getAllByRole('link', { name: /presentto\.online/ })).toHaveLength(8)
+    expect(screen.getByText(/Aquí aparecen únicamente los destinos cuya dirección está confirmada/)).toBeInTheDocument()
+  })
+
+  it('/operacion explica el modelo de red', () => {
+    renderApp('/operacion')
+
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Un modelo diseñado')
+    expect(screen.getByRole('heading', { name: 'Tres partes. Un sistema conectado.' })).toBeInTheDocument()
+  })
+
+  it('las rutas antiguas de producto o tienda no publican catálogo', () => {
+    const { unmount } = renderApp('/productos')
+
+    expect(screen.getByRole('heading', { name: 'Página no encontrada' })).toBeInTheDocument()
+    expect(screen.queryByText('Taladro percutor 750 W')).not.toBeInTheDocument()
+    unmount()
+
+    renderApp('/tienda/ferreza')
+    expect(screen.getByRole('heading', { name: 'Página no encontrada' })).toBeInTheDocument()
   })
 
   it('/cualquiera cae en el 404', () => {

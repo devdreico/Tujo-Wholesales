@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wtujo.presentto.online/sitemap.xml
+Sitemap: https://tujo.presentto.online/sitemap.xml

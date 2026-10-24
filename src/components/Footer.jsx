@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { stores } from '../data/stores.jsx'
+import { officialStores, OFFICIAL_STORE_COUNT } from '../data/official-stores.js'
+import { tujoLogisticsUrl } from '../data/destinations.js'
 import { LEGAL_NAME, PARENT_COMPANY, DOMAIN, LOGO_PATH } from '../lib/brand.js'
 
 export default function Footer() {
@@ -12,14 +13,14 @@ export default function Footer() {
               className="site-footer__logo"
               src={LOGO_PATH}
               alt=""
-              width="112"
+              width="72"
+              height="80"
             />
             <div>
               <p className="site-footer__name">{LEGAL_NAME}</p>
               <p className="site-footer__desc">
-                Coordinamos inventario, importación y abastecimiento para
-                consumo, industria, gastronomía y retail. Empresa derivada de{' '}
-                {PARENT_COMPANY}.
+                Coordinación de distribución y desarrollo de red para tiendas,
+                bodegas y socios independientes. Unidad interna de {PARENT_COMPANY}.
               </p>
             </div>
           </div>
@@ -28,9 +29,13 @@ export default function Footer() {
             <nav className="site-footer__col" aria-label="Portal">
               <p className="site-footer__col-title">Portal</p>
               <Link to="/">Inicio</Link>
-              <Link to="/productos">Productos</Link>
+              <Link to="/operacion">El modelo</Link>
               <Link to="/tiendas">Tiendas</Link>
-              <Link to="/operacion">Operación</Link>
+              {tujoLogisticsUrl && (
+                <a href={tujoLogisticsUrl} target="_blank" rel="noreferrer">
+                  TUJO LOGISTICS ↗
+                </a>
+              )}
             </nav>
 
             <nav className="site-footer__col" aria-label="Legal">
@@ -42,11 +47,13 @@ export default function Footer() {
         </div>
 
         <div className="site-footer__stores">
-          <p className="site-footer__col-title">Tiendas</p>
+          <p className="site-footer__col-title">
+            Tiendas oficiales · {officialStores.length} de {OFFICIAL_STORE_COUNT} destinos confirmados
+          </p>
           <ul className="site-footer__store-list">
-            {stores.map((store) => (
-              <li key={store.slug}>
-                <Link to={`/tienda/${store.slug}`}>{store.name}</Link>
+            {officialStores.map((store) => (
+              <li key={store.id}>
+                <a href={store.url}>{store.name}</a>
               </li>
             ))}
           </ul>

@@ -35,31 +35,31 @@ describe('setSeo', () => {
 
   it('actualiza el title del documento', () => {
     setSeo({
-      title: 'Catálogo de mayoreo | Tujo Wholesales',
+      title: 'Tujo Wholesales | Red de distribución y tiendas',
       description: 'Descripción de prueba',
-      path: '/productos',
+      path: '/operacion',
     })
 
-    expect(document.title).toBe('Catálogo de mayoreo | Tujo Wholesales')
+    expect(document.title).toBe('Tujo Wholesales | Red de distribución y tiendas')
   })
 
   it('actualiza la meta description', () => {
     setSeo({
       title: 'Título',
-      description: 'Catálogo de mayoreo con stock en bodega.',
-      path: '/productos',
+      description: 'Conexión de tiendas, bodegas y distribución.',
+      path: '/operacion',
     })
 
     expect(meta('meta[name="description"]')).toBe(
-      'Catálogo de mayoreo con stock en bodega.'
+      'Conexión de tiendas, bodegas y distribución.'
     )
   })
 
   it('actualiza el canonical con la ruta indicada', () => {
-    setSeo({ title: 'Título', description: 'Descripción', path: '/tienda/ferreza' })
+    setSeo({ title: 'Título', description: 'Descripción', path: '/tiendas' })
 
     expect(document.head.querySelector('link[rel="canonical"]').getAttribute('href')).toBe(
-      'https://wtujo.presentto.online/tienda/ferreza'
+      'https://tujo.presentto.online/tiendas'
     )
   })
 
@@ -67,24 +67,24 @@ describe('setSeo', () => {
     setSeo({ title: 'Título', description: 'Descripción', path: '/' })
 
     expect(document.head.querySelector('link[rel="canonical"]').getAttribute('href')).toBe(
-      'https://wtujo.presentto.online/'
+      'https://tujo.presentto.online/'
     )
-    expect(meta('meta[property="og:url"]')).toBe('https://wtujo.presentto.online/')
+    expect(meta('meta[property="og:url"]')).toBe('https://tujo.presentto.online/')
   })
 
   it('actualiza og:title y og:description junto al title', () => {
     setSeo({
-      title: 'Ferreza (Ferretería) | Tujo Wholesales',
-      description: 'Herramientas y fijaciones.',
-      path: '/tienda/ferreza',
+      title: 'Tiendas oficiales | Tujo Wholesales',
+      description: 'Acceso a las tiendas oficiales de Tujo.',
+      path: '/tiendas',
     })
 
     expect(meta('meta[property="og:title"]')).toBe(
-      'Ferreza (Ferretería) | Tujo Wholesales'
+      'Tiendas oficiales | Tujo Wholesales'
     )
-    expect(meta('meta[property="og:description"]')).toBe('Herramientas y fijaciones.')
+    expect(meta('meta[property="og:description"]')).toBe('Acceso a las tiendas oficiales de Tujo.')
     expect(meta('meta[property="og:url"]')).toBe(
-      'https://wtujo.presentto.online/tienda/ferreza'
+      'https://tujo.presentto.online/tiendas'
     )
   })
 })

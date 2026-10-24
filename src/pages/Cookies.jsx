@@ -7,7 +7,7 @@ export default function CookiesPage() {
   useEffect(() => {
     setSeo({
       title: 'Política de cookies | Tujo Wholesales',
-      description: 'Política de cookies y preferencias del ecosistema Tujo Wholesales.',
+      description: 'Información sobre almacenamiento local y tecnologías del sitio corporativo de Tujo Wholesales.',
       path: '/cookies',
     })
   }, [])
@@ -20,14 +20,13 @@ export default function CookiesPage() {
           title="Política de cookies"
         />
         <div className="legal-content">
-          <p>Este sitio usa cookies necesarias para mantener la navegación, recordar preferencias y reforzar la operación del portal. También puede usar cookies analíticas para medir uso y mejorar la calidad de la experiencia.</p>
-          <p>Las cookies necesarias se activan de forma funcional y no requieren consentimiento adicional. Las no esenciales sólo se usan si el usuario acepta en el banner de consentimiento.</p>
+          <p>El sitio corporativo no integra herramientas de analítica ni instala cookies publicitarias. No se requiere un banner de consentimiento para esas tecnologías mientras no se incorporen.</p>
+          <p>El alojamiento web puede procesar registros técnicos básicos para entregar y proteger el servicio. Las tiendas oficiales y formularios externos enlazados pueden usar tecnologías propias, sujetas a sus respectivos avisos.</p>
           <ul>
-            <li><strong>Cookies técnicas:</strong> seguridad, sesión y persistencia de configuraciones.</li>
-            <li><strong>Cookies analíticas:</strong> métricas del portal y rendimiento operativo.</li>
-            <li><strong>Cookies de personalización:</strong> preferencias del usuario y configuración visual.</li>
+            <li><strong>Este portal:</strong> no guarda preferencias ni identificadores persistentes en el navegador.</li>
+            <li><strong>Enlaces externos:</strong> al visitar otra tienda o formulario, aplican sus políticas de privacidad y cookies.</li>
           </ul>
-          <p>El usuario puede actualizar su elección desde esta página o desde el banner de consentimiento en cualquier momento.</p>
+          <p>Si se agregan analítica, publicidad o almacenamiento no esencial, esta política deberá actualizarse antes de activarlos.</p>
           <p><Link to="/privacidad">Ver política de privacidad →</Link></p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
+import { officialStores, OFFICIAL_STORE_COUNT } from './official-stores.js'
 
 const KEYS = ['slug', 'name', 'category', 'index', 'subdomain', 'url', 'accent']
 
@@ -41,5 +42,29 @@ describe('stores.meta.json sincronizado con stores.jsx', () => {
     for (const store of meta) {
       expect(Object.keys(store).sort()).toEqual([...KEYS].sort())
     }
+  })
+})
+
+describe('directorio público de tiendas oficiales', () => {
+  it('incluye solo destinos HTTPS confirmados bajo presentto.online', () => {
+    expect(officialStores.map((store) => store.name)).toEqual([
+      'Esturel',
+      'Viking Dogs',
+      'Catitools',
+      'LYL',
+      'Botane',
+      'Paceform',
+      'Knifopics',
+      'Saniver',
+    ])
+    for (const store of officialStores) {
+      expect(store.url).toMatch(/^https:\/\/[a-z0-9-]+\.presentto\.online$/)
+    }
+    expect(new Set(officialStores.map((store) => store.url)).size).toBe(officialStores.length)
+  })
+
+  it('conserva el total reportado de tiendas sin inventar destinos faltantes', () => {
+    expect(OFFICIAL_STORE_COUNT).toBe(22)
+    expect(officialStores.length).toBeLessThan(OFFICIAL_STORE_COUNT)
   })
 })

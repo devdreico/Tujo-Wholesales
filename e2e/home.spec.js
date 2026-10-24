@@ -4,32 +4,33 @@ test.describe('Portada', () => {
   test('muestra el título de la página', async ({ page }) => {
     await page.goto('/')
 
-    await expect(page).toHaveTitle(
-      'Tujo Wholesales | Importador y mayorista con bodega propia'
-    )
+    await expect(page).toHaveTitle('Tujo Wholesales | Red de distribución y tiendas')
   })
 
-  test('posiciona el mayoreo con respaldo logístico', async ({ page }) => {
+  test('presenta Wholesales como parte de TUJO LOGISTICS y usa el logo oficial', async ({ page }) => {
     await page.goto('/')
 
-    await expect(page.getByText(/Mayoreo con respaldo logístico/)).toBeVisible()
-    await expect(page.getByText(/Tujo Logistics/).first()).toBeVisible()
+    await expect(page.getByText(/TUJO LOGISTICS/).first()).toBeVisible()
     const logo = page.locator('.site-header__logo')
-    await expect(logo).toHaveAttribute('src', '/tujo-og.png')
-    await expect(logo).toHaveJSProperty('naturalWidth', 1200)
+    await expect(logo).toHaveAttribute('src', '/tujo-logo-real.png')
+    await expect(logo).toHaveJSProperty('naturalWidth', 1080)
   })
 
-  test('lista las 22 tarjetas del directorio de tiendas', async ({ page }) => {
+  test('explica el modelo y el alcance sin mostrar productos', async ({ page }) => {
     await page.goto('/')
 
-    await expect(page.locator('.store-card')).toHaveCount(22)
-    await expect(page.locator('.store-card__title').first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Una red comercial/ })).toBeVisible()
+    await expect(page.locator('.reach__figure--wide .reach__value')).toHaveText('500K+')
+    await expect(page.locator('.product-card')).toHaveCount(0)
   })
 
-  test('el CTA principal lleva a la sala de productos', async ({ page }) => {
-    await page.goto('/productos')
+  test('el directorio redirige a los dominios oficiales confirmados', async ({ page }) => {
+    await page.goto('/tiendas')
 
-    await expect(page).toHaveURL(/\/productos$/)
-    await expect(page.getByRole('heading', { name: 'Catálogo de mayoreo' })).toBeVisible()
+    const links = page.locator('.official-store')
+    await expect(links).toHaveCount(8)
+    await expect(links.first()).toHaveAttribute('href', 'https://esturel.presentto.online')
+    await expect(links.nth(2)).toHaveAttribute('href', 'https://catitools.presentto.online')
+    await expect(page.getByText(/solo los destinos cuya dirección está confirmada/)).toBeVisible()
   })
 })

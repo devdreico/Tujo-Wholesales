@@ -66,8 +66,8 @@ describe('buildGoogleMerchant', () => {
       'BT-SUP-014',
       'Omega 3 Wild — 60 cápsulas',
       expect.stringContaining('Botane'),
-      'https://wtujo.presentto.online/tienda/botane',
-      'https://wtujo.presentto.online/tujo-og.png',
+      'https://tujo.presentto.online/tienda/botane',
+      'https://tujo.presentto.online/tujo-logo-real.png',
       '18.90 USD',
       'in_stock',
       'Tujo',
@@ -126,7 +126,7 @@ describe('buildMercadoLibre', () => {
       condition: 'new',
       available_quantity: 240,
       category_id: 'suplementos',
-      permalink: 'https://wtujo.presentto.online/tienda/botane',
+      permalink: 'https://tujo.presentto.online/tienda/botane',
       seller_custom_field: 'botane/BT-SUP-014',
     })
     expect(items[1].available_quantity).toBe(0)

@@ -1,44 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { renderApp } from './helpers.jsx'
 
-describe('Interacción en /productos', () => {
-  it('buscar "taladro" deja un único resultado', async () => {
-    const user = userEvent.setup()
-    const { container } = renderApp('/productos')
+describe('Catálogo fuera del portal corporativo', () => {
+  it('/productos muestra 404 y no permite buscar productos', () => {
+    renderApp('/productos')
 
-    await user.type(screen.getByLabelText('Buscar productos'), 'taladro')
-
-    expect(screen.getByText('001 refs')).toBeInTheDocument()
-    expect(container.querySelectorAll('.product-card')).toHaveLength(1)
-    expect(screen.getByText('Taladro percutor 750 W')).toBeInTheDocument()
-  })
-
-  it('el chip Cocina deja solo productos de la categoría Cocina', async () => {
-    const user = userEvent.setup()
-    const { container } = renderApp('/productos')
-
-    await user.click(screen.getByRole('button', { name: 'Cocina' }))
-
-    expect(screen.getByText('002 refs')).toBeInTheDocument()
-    const visibleCategories = [...container.querySelectorAll('.product-card__category')].map(
-      (node) => node.textContent
-    )
-    expect(visibleCategories.length).toBeGreaterThan(0)
-    expect(visibleCategories).toEqual(visibleCategories.map(() => 'Cocina'))
-    expect(screen.getByRole('button', { name: 'Cocina' })).toHaveClass('is-active')
-  })
-
-  it('una búsqueda sin resultados muestra el estado vacío', async () => {
-    const user = userEvent.setup()
-    const { container } = renderApp('/productos')
-
-    await user.type(screen.getByLabelText('Buscar productos'), 'zzzzzz')
-
-    expect(screen.getByText('000 refs')).toBeInTheDocument()
-    expect(container.querySelector('.empty-state')).not.toBeNull()
-    expect(screen.getByRole('status')).toHaveClass('empty-state')
-    expect(container.querySelectorAll('.product-card')).toHaveLength(0)
+    expect(screen.getByRole('heading', { name: 'Página no encontrada' })).toBeInTheDocument()
+    expect(screen.queryByLabelText('Buscar productos')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Ver productos/ })).not.toBeInTheDocument()
   })
 })

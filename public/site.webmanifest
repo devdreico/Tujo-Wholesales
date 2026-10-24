@@ -1,15 +1,15 @@
 {
   "name": "Tujo Wholesales",
   "short_name": "Tujo",
-  "description": "Portal mayorista del ecosistema Tujo Wholesales.",
+  "description": "Red de distribución y tiendas del ecosistema TUJO LOGISTICS.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#f4f6f1",
+  "theme_color": "#18312a",
   "icons": [
     {
-      "src": "/tujo-og.png",
-      "sizes": "1200x630",
+      "src": "/tujo-logo-real.png",
+      "sizes": "1080x1194",
       "type": "image/png",
       "purpose": "any"
     }

@@ -78,120 +78,59 @@ function createWindow(url) {
 const SCENARIOS = [
   {
     label: 'portada /',
-    url: 'http://wtujo.presentto.online/',
+    url: 'https://tujo.presentto.online/',
     checks: [
-      ['hero Tujo', (d) => d.body.innerHTML.includes('Tujo')],
-      ['directorio "22 tiendas"', (d) => d.body.innerHTML.includes('22 tiendas')],
-      ['22 tarjetas de tienda', (d) => d.querySelectorAll('.store-card').length === 22],
-      ['CTA a catálogo', (d) => d.body.innerHTML.includes('catálogo completo')],
-      ['CTA de canal en destacados', (d) => Boolean(d.querySelector('.channel-cta'))],
+      ['hero corporativo Tujo', (d) => d.querySelector('h1')?.textContent.includes('Una red comercial')],
+      ['relación con TUJO LOGISTICS', (d) => d.body.innerHTML.includes('TUJO LOGISTICS')],
+      ['alcance de 22 tiendas oficiales', (d) => d.body.innerHTML.includes('22')],
+      ['sin fichas de producto', (d) => d.querySelectorAll('.product-card').length === 0],
+      ['CTA al modelo', (d) => Boolean(d.querySelector('a[href="#modelo"]'))],
     ],
   },
   {
-    label: 'catálogo /productos',
-    url: 'http://wtujo.presentto.online/productos',
+    label: 'directorio /tiendas',
+    url: 'https://tujo.presentto.online/tiendas',
     checks: [
-      ['h1 Catálogo de mayoreo', (d) => d.querySelector('h1')?.textContent.includes('Catálogo')],
-      ['SKU visible', (d) => d.body.innerHTML.includes('BT-SUP-014')],
-      ['chips de categoría', (d) => d.querySelectorAll('.chip').length > 5],
-      ['links de categoría', (d) => d.querySelectorAll('a[href^="/productos/"]').length > 0],
-      ['CTA de canal con ch', (d) =>
-        Boolean([...d.querySelectorAll('.channel-cta')].find((a) => a.href.includes('ch=whatsapp')))],
+      ['h1 directorio oficial', (d) => d.querySelector('h1')?.textContent.includes('Marcas propias')],
+      ['ocho dominios confirmados', (d) => d.querySelectorAll('.official-store').length === 8],
+      ['Esturel en subdominio oficial', (d) => d.querySelector('a[href="https://esturel.presentto.online"]') !== null],
+      ['Viking Dogs en subdominio oficial', (d) => d.querySelector('a[href="https://vikingdogs.presentto.online"]') !== null],
+      ['sin páginas locales de venta', (d) => d.querySelectorAll('a[href^="/tienda/"]').length === 0],
     ],
   },
   {
-    label: 'búsqueda y filtros',
-    url: 'http://wtujo.presentto.online/productos',
+    label: 'modelo /operacion',
+    url: 'https://tujo.presentto.online/operacion',
     checks: [
-      [
-        'búsqueda "taladro" → 1 resultado',
-        (d) => {
-          const input = d.querySelector('.filters__input')
-          const View = d.defaultView
-          const setter = Object.getOwnPropertyDescriptor(
-            Object.getPrototypeOf(input),
-            'value'
-          )?.set
-          setter.call(input, 'taladro')
-          input.dispatchEvent(new View.Event('input', { bubbles: true }))
-          return d.querySelectorAll('.product-card').length === 1
-        },
-      ],
-      [
-        'contador refleja 001 refs',
-        (d) => /\b001 refs\b/.test(d.querySelector('.filters__count')?.textContent ?? ''),
-      ],
-      [
-        'chip de categoría aplica filtro',
-        async (d) => {
-          const input = d.querySelector('.filters__input')
-          const View = d.defaultView
-          const setter = Object.getOwnPropertyDescriptor(
-            Object.getPrototypeOf(input),
-            'value'
-          )?.set
-          setter.call(input, '')
-          input.dispatchEvent(new View.Event('input', { bubbles: true }))
-          const chip = [...d.querySelectorAll('.chip')].find(
-            (c) => c.textContent.toLowerCase() === 'cocina'
-          )
-          if (!chip) return false
-          chip.click()
-          await wait(300)
-          return (
-            chip.getAttribute('aria-pressed') === 'true' &&
-            d.querySelectorAll('.product-card').length > 0 &&
-            !d.body.innerHTML.includes('Taladro percutor')
-          )
-        },
-      ],
+      ['explica el modelo', (d) => d.querySelector('h1')?.textContent.includes('Un modelo diseñado')],
+      ['muestra las tres partes conectadas', (d) => d.querySelectorAll('.operation-flow__step').length === 3],
+      ['CTA al directorio oficial', (d) => d.querySelector('a[href="/tiendas"]') !== null],
     ],
   },
   {
-    label: 'categoría /productos/ferreteria',
-    url: 'http://wtujo.presentto.online/productos/ferreteria',
+    label: 'ruta legacy /productos',
+    url: 'https://tujo.presentto.online/productos',
     checks: [
-      ['h1 de categoría', (d) => d.querySelector('h1')?.textContent.toLowerCase().includes('ferreter')],
-      ['producto ferretería visible', (d) => d.body.innerHTML.includes('Taladro percutor')],
-      [
-        'canonical de categoría',
-        (d) =>
-          (d.head.querySelector('link[rel="canonical"]')?.href ?? '').includes(
-            '/productos/ferreteria'
-          ),
-      ],
+      ['ruta antigua muestra 404', (d) => d.body.innerHTML.includes('Página no encontrada')],
+      ['sin SKU ni stock', (d) => !d.body.innerHTML.includes('BT-SUP-014') && !d.body.innerHTML.includes('stock en bodega')],
+      ['sin acción de compra', (d) => d.querySelectorAll('.channel-cta').length === 0],
     ],
   },
   {
-    label: 'tienda /tienda/ferreza',
-    url: 'http://wtujo.presentto.online/tienda/ferreza',
+    label: 'ruta legacy /tienda/ferreza',
+    url: 'https://tujo.presentto.online/tienda/ferreza',
     checks: [
-      ['hero Ferreza', (d) => d.querySelector('h1')?.textContent.includes('Ferreza')],
-      ['badge subdominio', (d) => d.body.innerHTML.includes('ferreza.presentto.online')],
-      ['producto del nodo', (d) => d.body.innerHTML.includes('Taladro percutor')],
-      [
-        'CTA WhatsApp con atribución',
-        (d) =>
-          Boolean(
-            [...d.querySelectorAll('.channel-cta')].find((a) => a.href.includes('ch=whatsapp'))
-          ),
-      ],
+      ['ruta de tienda antigua muestra 404', (d) => d.body.innerHTML.includes('Página no encontrada')],
+      ['sin badge local', (d) => d.querySelector('.domain-badge') === null],
+      ['sin productos', (d) => d.querySelectorAll('.product-card').length === 0],
     ],
   },
   {
     label: '404',
-    url: 'http://wtujo.presentto.online/noexiste',
+    url: 'https://tujo.presentto.online/noexiste',
     checks: [
       ['página de error', (d) => d.body.innerHTML.includes('Página no encontrada')],
       ['canonical apunta a 404', (d) => d.head.querySelector('link[rel="canonical"]') !== null],
-    ],
-  },
-  {
-    label: 'subdominio ferreza.presentto.online',
-    url: 'http://ferreza.presentto.online/',
-    checks: [
-      ['abre el nodo directamente', (d) => d.querySelector('h1')?.textContent.includes('Ferreza')],
-      ['badge del subdominio', (d) => d.body.innerHTML.includes('ferreza.presentto.online')],
     ],
   },
 ]

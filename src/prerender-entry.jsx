@@ -3,9 +3,10 @@ import { renderToString } from 'react-dom/server'
 import { Route, Routes, StaticRouter } from 'react-router-dom'
 import App from './App.jsx'
 import HomeEntry from './components/HomeEntry.jsx'
-import Products from './pages/Products.jsx'
-import Category from './pages/Category.jsx'
-import StorePage from './pages/StorePage.jsx'
+import TiendasPage from './pages/Tiendas.jsx'
+import OperacionPage from './pages/Operacion.jsx'
+import CookiesPage from './pages/Cookies.jsx'
+import PrivacyPage from './pages/Privacy.jsx'
 import NotFound from './pages/NotFound.jsx'
 import { seoMetaFor } from './lib/seo.js'
 
@@ -16,7 +17,7 @@ export { seoMetaFor }
  * Importa las páginas de forma estática (renderToString no admite lazy) y
  * replica el árbol de `src/main.jsx` sin la ruta /admin.
  *
- * @param {string} path Ruta a renderizar (p. ej. "/tienda/ferreza").
+ * @param {string} path Ruta a renderizar (p. ej. "/tiendas").
  * @returns {string} HTML de la ruta.
  */
 export function render(path) {
@@ -26,9 +27,10 @@ export function render(path) {
         <Routes>
           <Route element={<App />}>
             <Route path="/" element={<HomeEntry />} />
-            <Route path="/productos" element={<Products />} />
-            <Route path="/productos/:categoria" element={<Category />} />
-            <Route path="/tienda/:slug" element={<StorePage />} />
+            <Route path="/tiendas" element={<TiendasPage />} />
+            <Route path="/operacion" element={<OperacionPage />} />
+            <Route path="/cookies" element={<CookiesPage />} />
+            <Route path="/privacidad" element={<PrivacyPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

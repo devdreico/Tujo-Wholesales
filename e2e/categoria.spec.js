@@ -1,9 +1,7 @@
 import { test, expect } from '@playwright/test'
 
-test.describe('Página de categoría', () => {
-  test('prerenderiza título, canonical e h1 propios sin errores de hidratación', async ({
-    page,
-  }) => {
+test.describe('Rutas anteriores de catálogo', () => {
+  test('no publica fichas de producto ni claims de stock', async ({ page }) => {
     const runtimeErrors = []
     page.on('pageerror', (error) => runtimeErrors.push(String(error)))
     page.on('console', (message) => {
@@ -12,15 +10,9 @@ test.describe('Página de categoría', () => {
 
     await page.goto('/productos/ferreteria')
 
-    await expect(page).toHaveTitle('Ferretería — mayoreo | Tujo Wholesales')
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-      'href',
-      'https://wtujo.presentto.online/productos/ferreteria'
-    )
-    await expect(
-      page.getByRole('heading', { level: 1, name: 'Mayoreo de Ferretería' })
-    ).toBeVisible()
-    await expect(page.locator('.product-card')).toHaveCount(2)
+    await expect(page.getByRole('heading', { name: 'Página no encontrada' })).toBeVisible()
+    await expect(page.getByText('Taladro percutor 750 W')).toHaveCount(0)
+    await expect(page.getByLabel('Buscar productos')).toHaveCount(0)
 
     await page.waitForLoadState('networkidle')
 

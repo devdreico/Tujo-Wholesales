@@ -1,41 +1,27 @@
-import { readFile, writeFile } from 'node:fs/promises'
+import { writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
-import { categories } from '../src/data/products.js'
-import { categorySlug } from '../src/lib/routes.js'
 import { BASE_URL } from '../src/lib/brand.js'
-
-const BASE = BASE_URL
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-
-const stores = JSON.parse(
-  await readFile(path.join(ROOT, 'src/data/stores.meta.json'), 'utf8')
-)
+const BASE = BASE_URL
 
 /**
- * Fuente única de rutas públicas (A7): home, catálogo, 21 categorías y 22 tiendas.
- * /admin queda fuera a propósito (no indexable).
+ * Rutas públicas corporativas. Productos, pedidos y destinos de tienda
+ * pertenecen a sus sitios oficiales, no al portal de Wholesales.
  *
  * @returns {string[]} Rutas a prerenderizar y publicar en el sitemap.
  */
 export function routesForPrerender() {
-  return [
-    '/',
-    '/productos',
-    ...categories.map((category) => `/productos/${categorySlug(category)}`),
-    ...stores.map((store) => `/tienda/${store.slug}`),
-  ]
+  return ['/', '/operacion', '/tiendas', '/cookies', '/privacidad']
 }
 
 const priorityFor = (route) => {
   if (route === '/') return '1.0'
-  if (route === '/productos') return '0.9'
-  if (route.startsWith('/productos/')) return '0.7'
-  return '0.8'
+  if (route === '/tiendas') return '0.8'
+  return '0.5'
 }
 
-const changefreqFor = (route) =>
-  route === '/' || route.startsWith('/tienda/') ? 'weekly' : 'daily'
+const changefreqFor = (route) => (route === '/' ? 'weekly' : 'monthly')
 
 /**
  * @param {string[]} routes Rutas incluidas en el sitemap.
@@ -77,7 +63,7 @@ async function main() {
   }
 
   console.log(
-    `sitemap.xml · ${routes.length} rutas (${categories.length} categorías, ${stores.length} tiendas) → ${targets
+    `sitemap.xml · ${routes.length} rutas corporativas → ${targets
       .map((file) => path.relative(ROOT, file))
       .join(', ')}`
   )

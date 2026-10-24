@@ -1,6 +1,8 @@
 # Tujo Wholesales
 
-Portal mayorista multicanal y ecosistema comercial orquestado. Conecta un inventario centralizado en bodega con múltiples salidas de venta (22 tiendas temáticas digitales, subdominios, portal general, WhatsApp, marketplaces y mostrador físico), con soporte de prerender SEO, feed generation, hub de pedidos interno y atribución de campañas multicanal (`utm_*` + `ch`).
+Sitio corporativo de **Tujo Wholesales**, unidad interna de **TUJO LOGISTICS**. Presenta el modelo de distribución, proyectos y alcance de la red, y redirige a tiendas oficiales y formularios autorizados.
+
+El sitio público no es una tienda: no expone productos, precios, stock, pedidos, pagos ni solicitudes de envío. El logo oficial es `public/tujo-logo-real.png`; el dominio canónico es `https://tujo.presentto.online`.
 
 ## Stack
 
@@ -22,7 +24,7 @@ npm ci
 # Servidor de desarrollo
 npm run dev
 
-# Compilación de producción (incluye SSR, prerender de 45 rutas y sitemap)
+# Compilación de producción (incluye SSR, cinco rutas corporativas y sitemap)
 npm run build
 ```
 
@@ -31,39 +33,54 @@ npm run build
 | Script | Descripción |
 |---|---|
 | `npm run dev` | Inicia el servidor de desarrollo Vite |
-| `npm run build` | Compila cliente y SSR, genera 45 páginas prerenderizadas y actualiza el sitemap |
+| `npm run build` | Compila cliente y SSR, prerenderiza cinco rutas corporativas y actualiza el sitemap |
 | `npm run preview` | Previsualiza la compilación de producción |
 | `npm run lint` | Ejecuta `oxlint` para validación de código |
 | `npm test` | Ejecuta la suite de unitarias con Vitest |
 | `npm run test:watch` | Ejecuta Vitest en modo watch |
 | `npm run test:e2e` | Ejecuta las pruebas End-to-End con Playwright |
-| `npm run smoke` | Ejecuta el smoke test en jsdom (7 escenarios de render e interacción) |
-| `npm run contrast` | Verifica el contraste WCAG AA de los 22 nodos comerciales |
-| `npm run feeds` | Genera los feeds de exportación (Google, Meta, MercadoLibre) en `feeds/` |
-| `npm run catalog:import` | Importa un catálogo masivo CSV desde `data/catalog.csv` |
+| `npm run smoke` | Ejecuta seis escenarios corporativos en jsdom |
+| `npm run contrast` | Verifica contraste de paletas heredadas |
+| `npm run feeds` | Herramienta heredada, fuera de la experiencia pública |
+| `npm run catalog:import` | Herramienta heredada, fuera de la experiencia pública |
 
-## Estructura del Repositorio
+## Rutas públicas
 
-- `src/components/`: Componentes UI reutilizables (Hero, ProductCard, SearchFilters, ChannelActions, Admin, etc.)
-- `src/pages/`: Vistas de ruta principales (Products, Category, StorePage, Admin, NotFound)
-- `src/lib/`: Lógica de negocio y adaptadores (`seo.js`, `host.js`, `channels.js`, `pricing.js`, `attribution.js`, `feeds.js`, `orders-store.js`)
-- `src/data/`: Datos estáticos y metadatos (`products.js`, `stores.jsx`, `channels.js`, `stores.meta.json`)
-- `src/styles/`: Hojas de estilo modulares (`nav.css`, `home.css`, `products.css`, `store.css`, `admin.css`)
-- `scripts/`: Herramientas de compilación, prerender, feeds, contraste y smoke test
-- `e2e/`: Pruebas End-to-End con Playwright
-- `data/`: Plantillas CSV y documentación de importación (`catalog.template.csv`, `README.md`)
+| Ruta | Propósito |
+|---|---|
+| `/` | Presentación del modelo, alcance y proyectos |
+| `/operacion` | Estructura del modelo de red |
+| `/tiendas` | Redirecciones a sitios oficiales confirmados |
+| `/cookies` y `/privacidad` | Información legal |
 
-## Cómo Añadir una Tienda
+Las URLs confirmadas se mantienen en `src/data/official-stores.js`. Actualmente se muestran solo las direcciones verificadas; completar las 22 requiere validar cada destino.
 
-1. Añadir el nodo comercial en `src/data/stores.jsx` asegurando su `slug`, `subdomain`, `accent` (verificado WCAG), `icon` y `category`.
-2. Registrar la metadata correspondiente en `src/data/stores.meta.json`.
-3. El sistema de enrutamiento y prerender incorporará automáticamente la nueva ruta `/tienda/:slug` y el subdominio correspondiente.
+## Destinos configurables
 
-## Cómo Activar un Canal de Venta
+- `VITE_PARTNER_FORM_URL`: formulario oficial de alianzas.
+- `VITE_TUJO_LOGISTICS_URL`: sitio oficial de TUJO LOGISTICS.
 
-1. Modificar el registro en `src/data/channels.js`.
-2. Cambiar `enabled: true` e indicar la `url` de salida, la comisión porcentual (`commissionPct`) y el `ctaLabel`.
-3. Los botones de acción en fichas de producto y tiendas (`ChannelActions`) reflejarán los canales activos con la atribución de campaña automática (`ch=<id>&utm_campaign=...`).
+Ambos destinos solo se muestran si son URLs HTTPS válidas. No se inventan enlaces mientras falten los destinos aprobados.
+
+## Estructura principal
+
+- `src/pages/`: Inicio, modelo de red, directorio y páginas legales.
+- `src/data/official-stores.js`: destinos oficiales confirmados.
+- `src/data/destinations.js`: destinos HTTPS opcionales para alianzas y TUJO LOGISTICS.
+- `src/lib/brand.js` y `src/lib/seo.js`: identidad, dominio canónico y metadatos.
+- `src/styles/corporate.css`: sistema visual corporativo del sitio.
+- `scripts/`: prerender, sitemap, validaciones y smoke test.
+- Módulos anteriores de productos/pedidos permanecen como legado no publicado.
+
+## Cómo Añadir un Destino Oficial
+
+1. Confirmar nombre, dominio HTTPS, responsable y estado de la tienda con el propietario.
+2. Añadir la entrada a `src/data/official-stores.js`.
+3. Probar redirección y actualizar las pruebas del directorio. La ficha se abre en el sitio oficial, no en una página de producto local.
+
+## Activos Internos Heredados
+
+El repositorio conserva módulos de catálogo, pricing, feeds, canales y pedidos del prototipo anterior. No están montados en rutas públicas; sus datos de ejemplo no son inventario ni métricas corporativas. No reactivarlos en la web pública sin una decisión explícita de producto.
 
 ## Notas de Calidad y Verificación
 
@@ -71,4 +88,4 @@ El proyecto cuenta con un pipeline de CI configurado en `.github/workflows/ci.ym
 1. `npm run lint` (0 warnings permitidos)
 2. `npm test` (tests unitarios en verde)
 3. `npm run build` (compilación completa y prerender)
-4. `npm run smoke` (verificación de los 7 escenarios en jsdom)
+4. `npm run smoke` (rutas corporativas y ausencia de catálogo público)

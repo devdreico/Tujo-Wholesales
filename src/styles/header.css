@@ -34,6 +34,10 @@
   flex-shrink: 0;
 }
 
+.site-header__wordmark {
+  display: none;
+}
+
 /* ---- Nav ---- */
 
 .site-nav {

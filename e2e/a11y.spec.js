@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
-const PAGINAS = ['/', '/productos', '/tienda/botane']
+const PAGINAS = ['/', '/operacion', '/tiendas']
 
 for (const path of PAGINAS) {
   test.describe(`accibilidad ${path}`, () => {

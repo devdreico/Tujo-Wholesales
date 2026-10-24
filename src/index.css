@@ -6,27 +6,27 @@
 /* ---- Tokens ---- */
 :root {
   /* Palette */
-  --bg: #ffffff;
-  --bg-subtle: #fafafa;
+  --bg: #f4f6f1;
+  --bg-subtle: #e9eee7;
   --surface: #ffffff;
-  --surface-hover: #f5f5f5;
-  --border: #e5e5e5;
-  --border-strong: #d4d4d4;
+  --surface-hover: #edf1eb;
+  --border: #d8dfd6;
+  --border-strong: #aab6aa;
 
-  --text: #171717;
-  --text-secondary: #525252;
-  --text-muted: #737373;
+  --text: #18312a;
+  --text-secondary: #42564d;
+  --text-muted: #68796e;
   --text-inverse: #ffffff;
 
-  --accent: #171717;
-  --accent-hover: #404040;
+  --accent: #a8442d;
+  --accent-hover: #8e3926;
   --accent-contrast: #ffffff;
 
-  --focus-ring: #171717;
+  --focus-ring: #a8442d;
 
   /* Typography */
-  --font: 'Montserrat', system-ui, -apple-system, sans-serif;
-  --font-display: 'Space Grotesk', 'Montserrat', system-ui, sans-serif;
+  --font: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
 
   /* Spacing */
@@ -128,7 +128,7 @@ h5,
 h6 {
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 /* ---- Focus ---- */
@@ -196,7 +196,7 @@ h6 {
 /* ---- Layout ---- */
 .page {
   min-height: calc(100vh - 200px);
-  padding-top: 140px;
+  padding-top: 0;
 }
 
 .container {

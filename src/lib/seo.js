@@ -1,7 +1,4 @@
-import { stores } from '../data/stores.jsx'
-import { CATALOG_TOTAL } from '../data/products.js'
-import { categoryFromSlug } from './routes.js'
-import { BASE_URL, LEGAL_NAME } from './brand.js'
+import { BASE_URL, LEGAL_NAME, PARENT_COMPANY } from './brand.js'
 
 const DEFAULT_ROBOTS = 'index, follow, max-image-preview:large'
 
@@ -21,7 +18,7 @@ const normalizePath = (raw) => {
  * Es la fuente única de títulos: la usan `setSeo` (hidratación en cliente)
  * y `scripts/prerender.mjs` (etiquetas inyectadas en `dist/<ruta>/index.html`).
  *
- * @param {string} path Ruta solicitada (p. ej. "/productos/ferreteria").
+ * @param {string} path Ruta solicitada (p. ej. "/tiendas").
  * @returns {{title: string, description: string, path: string, url: string, robots?: string}}
  */
 export function seoMetaFor(path = '/') {
@@ -30,54 +27,46 @@ export function seoMetaFor(path = '/') {
 
   if (clean === '/') {
     return {
-      title: `${LEGAL_NAME} | Importador y mayorista con bodega propia`,
-      description:
-        'Portal mayorista de Tujo Wholesales, empresa derivada de Tujo Logistics: 22 tiendas afiliadas con identidad propia y catálogo de más de 1000 productos con inventario en bodega.',
+      title: `${LEGAL_NAME} | Red de distribución y tiendas`,
+      description: `${LEGAL_NAME} conecta tiendas, bodegas independientes y distribución dentro del ecosistema ${PARENT_COMPANY}.`,
       path: clean,
       url,
     }
   }
 
-  if (clean === '/productos') {
+  if (clean === '/tiendas') {
     return {
-      title: `Productos y mayoreo (${CATALOG_TOTAL}+ referencias) | ${LEGAL_NAME}`,
-      description:
-        'Catálogo de mayoreo del ecosistema Tujo Wholesales: más de 1000 referencias con stock en bodega, buscador, filtros por tienda y categoría.',
+      title: `Tiendas oficiales | ${LEGAL_NAME}`,
+      description: 'Acceso directo a las tiendas oficiales de la red Tujo.',
       path: clean,
       url,
     }
   }
 
-  if (clean.startsWith('/productos/')) {
-    const category = categoryFromSlug(clean.slice('/productos/'.length))
-    if (!category) return { ...NOT_FOUND_META, path: clean, url }
+  if (clean === '/operacion') {
     return {
-      title: `${category} — mayoreo | ${LEGAL_NAME}`,
-      description: `Mayoreo de ${category}: referencias con stock en bodega del ecosistema Tujo Wholesales, con buscador, filtros por nodo y precios por caja, pack, kilogramo o litro.`,
+      title: `El modelo de red | ${LEGAL_NAME}`,
+      description: `${LEGAL_NAME} conecta tiendas, bodegas independientes y distribución dentro de ${PARENT_COMPANY}.`,
       path: clean,
       url,
     }
   }
 
-  if (clean.startsWith('/tienda/')) {
-    const store = stores.find((entry) => entry.slug === clean.slice('/tienda/'.length))
-    if (!store) return { ...NOT_FOUND_META, path: clean, url }
+  if (clean === '/cookies') {
     return {
-      title: `${store.name} (${store.category}) | ${LEGAL_NAME}`,
-      description: `${store.description} Nodo ${store.index} del ecosistema Tujo Wholesales — accede a su apartado en ${store.subdomain}.`,
+      title: `Política de cookies | ${LEGAL_NAME}`,
+      description: `Información sobre el uso de cookies en el sitio corporativo de ${LEGAL_NAME}.`,
       path: clean,
       url,
     }
   }
 
-  if (clean === '/admin') {
+  if (clean === '/privacidad') {
     return {
-      title: `Hub de pedidos | ${LEGAL_NAME}`,
-      description:
-        'Panel interno de operación multicanal del ecosistema Tujo Wholesales.',
+      title: `Política de privacidad | ${LEGAL_NAME}`,
+      description: `Información de privacidad del sitio corporativo de ${LEGAL_NAME}.`,
       path: clean,
       url,
-      robots: 'noindex, follow',
     }
   }
 

@@ -1,89 +1,89 @@
-# TODO — Tujo Wholesales: plan de implementación
+# TODO — Tujo Wholesales: experiencia corporativa y red oficial
 
-Leyenda: `[ ]` pendiente · `[~]` en curso · `[x]` hecho · 🔒 bloqueado en insumo del usuario
-Regla de calidad (aplica a toda tarea): **lint 0 warnings · tests verdes · build OK · sin errores a11y críticos · docs del área actualizadas**.
+## Objetivo del sitio
 
----
+Presentar a Tujo Wholesales como unidad interna de **TUJO LOGISTICS**, explicar el modelo de distribución y colaboración, mostrar proyectos y su alcance con cifras verificables, y derivar a contactos interesados hacia formularios oficiales, Tujo y las tiendas de la red.
 
-## 🔒 Insumos que necesito de ti (desbloquean tareas)
+Este sitio **no es una tienda**: no debe mostrar productos, precios, stock, carrito, checkout, pedidos ni solicitudes de envío. El catálogo, los feeds y los componentes de pedido existentes quedan fuera del recorrido público; no eliminarlos hasta decidir si sirven para herramientas internas.
 
-| ID | Insumo | Formato mínimo | Desbloquea | Estado |
-|----|--------|----------------|-----------|--------|
-| I1 | Volcado real del catálogo (+1000) | CSV: `sku,nombre,categoria,costo,precio,stock,proveedor,peso` | B1, B2 | [ ] |
-| I2 | Lista canónica de canales de venta | CSV/Fila: `nombre,tipo(web/whatsapp/ml/amazon/fisico),url,comision_pct,gestor` | B3, B5, C2 | [ ] |
-| I3 | Margen real y comisiones por canal | % por canal sobre precio base | B2 | [ ] |
-| I4 | Moneda, mercado e IVA | 1 línea de decisión | B2 (UI de precios), C2 | [ ] |
-| I5 | Operación logística | transportistas, cortes de hora, zonas, mínimo de pedido | C1 | [ ] |
-| I6 | Accesos de analítica (solo lectura) | Search Console, Meta, paneles marketplace | C3 | [ ] |
-| I7 | Presupamento mensual real | cifra | C4 | [ ] |
-| I8 | Disponibilidad del equipo | horas/semana por persona | C4 | [ ] |
-| I9 | Prueba social | facturas proveedor, antigüedad, fotos de bodega, clientes | C1 | [ ] |
-| I10 | Políticas comerciales | devoluciones, garantía, mínimo mayoreo, plazos de pago | B5 | [ ] |
+## Reglas de contenido y diseño
 
----
+- Logo oficial único: `public/tujo-logo-real.png`.
+- Dominio principal de redirección: `tujo.presentto.online`.
+- Tiendas: enlaces directos a dominios oficiales `nombredeempresa.presentto.online`.
+- Tono corporativo, claro y profesional; explicar el modelo sin prometer resultados no demostrados.
+- Toda cifra pública debe tener definición, unidad, periodo, fuente y fecha de actualización. Si falta evidencia, no se publica.
+- No publicar la cifra de más de 500.000 tiendas hasta recibir respaldo y aprobación explícita.
+- Priorizar jerarquía, tipografía, composición visual, legibilidad, fotografía/recursos reales, responsive y accesibilidad sobre adornos o animaciones gratuitas.
 
-## Fase A — Cimiento de calidad (sin bloqueos)
+## Bloqueos de negocio y contenido
 
-| ID | Tarea | Criterios de aceptación | Owner | Estado |
-|----|-------|------------------------|-------|--------|
-| A1 | Suite unitaria Vitest + Testing Library | `npm test` verde; cubre: catálogo (filtros, formatos, derivados), seo por ruta, StoreCard (link interno + externo + acento), SearchFilters (callbacks/aria), ProductGrid (vacío), Nav, HomeEntry (hostname→nodo) | Agente A | [x] |
-| A2 | CI GitHub Actions | workflow: lint + test + build en push/PR; badge documentado | Agente A | [x] |
-| A3 | E2E Playwright | specs: portada (22 cards), búsqueda en /productos, nodo /tienda/ferreza, 404; `npm run test:e2e` | Agente A | [x] |
-| A4 | Tokens de diseño + contraste | accents de 22 nodos verificados WCAG AA (≥4.5 texto / ≥3 UI) vía `npm run contrast`; correcciones aplicadas | Agente C | [x] |
-| A5 | Auditoría a11y | skip-link, focus visible en todo el flujo de teclado, aria-live en resultados, landmarks, sin texto < 4.5:1 | Agente C | [x] |
-| A6 | Code-splitting por ruta | `React.lazy` en todas las rutas + Suspense con fallback coherente; JS inicial < 60 KB gz | Agente B | [x] |
-| A7 | Prerender SEO de las 24 rutas | build genera `dist/<ruta>/index.html` con contenido + title/canonical/og propios; cliente hidrata sin errores | Agente B | [x] |
-| A8 | Páginas de categoría | `/productos/<categoria>` con filtros preactivados, enlazadas desde chips y sitemap | Agente B | [x] |
-| A9 | Smoke test en repo | `scripts/smoke.mjs` (jsdom) con los checks de render/interacción; incluido en CI | Integración | [x] |
+| ID | Insumo requerido | Formato de entrega | Desbloquea | Estado |
+|---|---|---|---|---|
+| I1 | Directorio oficial de 22 tiendas | Nombre visible, URL final, logo autorizado (si existe), estado activa/inactiva | Directorio y redirecciones | [ ] |
+| I2 | Destinos oficiales | URL de Tujo, formulario para socios y otros formularios aprobados; indicar propietario de cada destino | CTAs y páginas de participación | [ ] |
+| I3 | Audiencias y modelo | Tipos de participantes, qué aportan, qué reciben y cómo se integran; validar con negocio | Mensaje principal y páginas del modelo | [ ] |
+| I4 | Datos de escala/proyectos | Por proyecto: nombre, objetivo, estado, territorio, periodo, aliados, alcance medido, unidad, fuente y aprobador. Para cifras de red: definición, periodo y evidencia | Bloque cuantitativo y proyectos | [ ] |
+| I5 | Identidad visual | Logo oficial ya localizado; confirmar paleta, tipografías, fotografías, permisos y usos de marcas | Sistema visual | [~] |
+| I6 | Datos corporativos/legales | Razón social publicable, contacto, privacidad y responsable de formularios | Pie, contacto y confianza | [ ] |
 
-## Fase B — Núcleo ecosistema (inventario único → N salidas)
+## Fase 0 — Alinear la historia
 
-| ID | Tarea | Criterios de aceptación | Requiere | Owner | Estado |
-|----|-------|------------------------|----------|-------|--------|
-| B1 | Pipeline de importación de catálogo | `npm run catalog:import -- data/catalog.csv` valida columnas, deduplica SKU, genera `src/data/catalog.generated.js`; plantilla `data/catalog.template.csv` incluida | I1 (datos reales) | Agente D | [x] |
-| B2 | Motor de precios por canales | `src/lib/pricing.js`: precio escalonado por cantidad, factor por canal, guarda de margen mínimo (canal bloqueado si comisión ≥ margen); tests | I3, I4 | Agente D | [x] |
-| B3 | Registro de canales | `src/data/channels.js` + `src/lib/channels.js`: canales con `enabled`, tipo, comisión y CTA; 5 placeholders listos para I2 | I2 (relleno real) | Agente D | [x] |
-| B4 | Generadores de feeds | `npm run feeds` → Google Merchant CSV, Meta/WhatsApp CSV, MercadoLibre JSON en `feeds/`; campos obligatorios presentes; con datos de muestra | — | Agente D | [x] |
-| B5 | Hub de pedidos `/admin` | lista con canal, estados (nuevo→pagado→empacado→enviado→entregado), KPIs por canal, adapter reemplazable (localStorage hoy, Supabase luego); sin dependencias nuevas | I10 (reglas) | Agente E | [x] |
-| B6 | Acciones multi-canal en fichas | producto y nodo muestran CTA por canal habilitado (web/WhatsApp/marketplace) + atribución `ch`/`utm` en todos los enlaces | I2 (activar) | Integración | [x] |
+| ID | Tarea | Criterio de aceptación | Bloqueo | Estado |
+|---|---|---|---|---|
+| 0.1 | Definir frase de posicionamiento | Una frase aprobada describe qué hace Wholesales dentro de TUJO LOGISTICS, sin lenguaje de tienda o fulfillment al consumidor | I3 | [ ] |
+| 0.2 | Mapear públicos y acciones | Cada público tiene una acción principal aprobada: conocer el modelo, sumarse como socio/tienda/bodega o visitar una tienda oficial | I2, I3 | [x] |
+| 0.3 | Inventariar afirmaciones públicas | Cada claim tiene responsable y evidencia; claims sin validar quedan fuera del sitio | I4, I6 | [ ] |
+| 0.4 | Corregir inconsistencias actuales | Una sola lista de tiendas y una sola descripción de mercados/alcance en todas las páginas y metadatos | I1, I4 | [x] |
 
-## Fase C — Crecimiento
+## Fase 1 — Diseño de experiencia
 
-| ID | Tarea | Criterios de aceptación | Requiere | Owner | Estado |
-|----|-------|------------------------|----------|-------|--------|
-| C1 | Página de logística + confianza | cobertura, tiempos, mínimos, prueba social publicada | I5, I9 | [ ] | |
-| C2 | Landing por canal/campaña | plantilla reutilizable con oferta B2B y captura a WhatsApp propio | I2, I4 | [ ] | |
-| C3 | Panel de métricas | ventas/margen por canal, stock en riesgo, SKU rotados | I6 | [ ] | |
-| C4 | Motor de crecimiento | pauta por canal con presupuesto, experimentos semanales | I7, I8 | [ ] | |
-| C5 | Multi-carrito entre nodos | pedido único cruzando tiendas (ventaja de red) | B5 | [ ] | |
-| C6 | Fuente de verdad remota | swap de adapter a Supabase/API manteniendo contratos | I1 | [ ] | |
+| ID | Tarea | Criterio de aceptación | Bloqueo | Estado |
+|---|---|---|---|---|
+| 1.1 | Definir arquitectura de información | Sitemap aprobado: Inicio, Modelo, Proyectos/Alcance, Tiendas oficiales, Participar y páginas legales/contacto necesarias | 0.2, I2 | [x] |
+| 1.2 | Diseñar flujo de navegación | En máximo dos decisiones desde Inicio se llega a tiendas oficiales o al formulario correcto; cada CTA nombra claramente el destino | I2 | [~] |
+| 1.3 | Diseñar wireframes responsive | Wireframes de móvil y escritorio para Inicio, Modelo, Proyectos, Directorio y Participar; se revisa primero el viewport móvil | 1.1 | [~] |
+| 1.4 | Diseñar sistema visual | Logo real integrado; tokens de color, tipografía, escala, espaciado, botones, enlaces, estados, iconografía y tratamiento de imágenes documentados | I5 | [~] |
+| 1.5 | Diseñar visualización del modelo | Diagrama legible que explique cómo se conectan TUJO LOGISTICS, Wholesales, tiendas/bodegas y distribución, aprobado por negocio | I3 | [~] |
+| 1.6 | Diseñar fichas de proyectos y métricas | Cada ficha explica objetivo, aporte de Wholesales, estado, territorio, periodo, alcance/resultados medidos y cómo colaborar si aplica; métricas muestran valor, unidad, fuente y fecha. Separar resultados logrados de metas futuras | I2, I4 | [ ] |
+| 1.7 | Diseñar directorio de 22 tiendas | Nombre y enlace oficial por tienda; búsqueda/filtro solo si mejora el uso con 22 elementos; ninguna tarjeta simula compra | I1 | [~] |
+| 1.8 | Revisar prototipo con usuarios internos | Validación con al menos 3 perfiles representativos del equipo/negocio; registrar dudas, cambios y aprobación final | 1.3–1.7 | [ ] |
 
----
+## Fase 2 — Implementación del sitio
 
-## Tablero de subagentes (propiedad de archivos)
+| ID | Tarea | Criterio de aceptación | Bloqueo | Estado |
+|---|---|---|---|---|
+| 2.1 | Rehacer Inicio corporativo | Presenta marca, relación con TUJO LOGISTICS, modelo y rutas principales; sin catálogo ni cifras sin aprobar | Fase 1 | [x] |
+| 2.2 | Publicar página Modelo | Describe roles, flujo de colaboración y alcance en lenguaje aprobado; sin promesas de entregas al visitante | I3 | [~] |
+| 2.3 | Publicar Proyectos y alcance | Cada proyecto publicado incluye objetivo, aporte de Wholesales, estado, territorio/periodo y resultado cuantificado con unidad y fuente; las metas futuras se etiquetan como metas y la colaboración enlaza al formulario aprobado | I2, I4 | [ ] |
+| 2.4 | Publicar directorio oficial | Las 22 entradas apuntan a URLs confirmadas; enlaces probados y marcas visuales autorizadas | I1 | [~] |
+| 2.5 | Implementar CTAs de participación | Cada CTA abre el formulario oficial correspondiente; no se crea un formulario paralelo sin dueño y destino aprobados | I2 | [ ] |
+| 2.6 | Integrar logo y metadatos | `tujo-logo-real.png` usado en encabezado, favicon/manifest y Open Graph, con dimensiones/alternativas correctas | I5 | [x] |
+| 2.7 | Retirar rutas comerciales del menú público | Productos, categorías, fichas, admin y acciones de pedido no aparecen en navegación, sitemap público ni CTA de la nueva experiencia | Aprobación de alcance | [x] |
+| 2.8 | Actualizar documentación | README, arquitectura y sitemap describen presencia corporativa, captación y redirecciones; backlog anterior queda archivado o eliminado | 2.1–2.7 | [x] |
 
-| Agente | Tareas | Archivos PROPIOS (única autoridad) | Prohibido tocar |
-|--------|--------|-----------------------------------|-----------------|
-| **A — Tests & CI** | A1, A2, A3 | `vitest.config.js`, `src/test/**`, `**/*.test.{js,jsx}`, `tests/**`, `.github/workflows/ci.yml`, `playwright.config.js`, `e2e/**` | `package.json`, `vite.config.js`, `src/main.jsx`, código fuente (salvo extracción mínima para testabilidad documentada) |
-| **C — Tokens & A11y** | A4, A5 | `src/index.css`, `src/styles/**`, `scripts/contrast-check.mjs`, `src/App.jsx` (skip-link), ediciones a11y puntuales en componentes (sin renombrar clases) | `package.json`, `main.jsx`, tests, datos |
-| **D — Datos & Feeds** | B1, B2, B3, B4 | `src/lib/pricing.js`, `src/lib/channels.js`, `src/lib/feeds.js`, `src/lib/attribution.js`, `src/lib/csv.js`, `src/data/channels.js`, `scripts/generate-feeds.mjs`, `scripts/import-catalog.mjs`, `data/**`, sus `*.test.js`, y línea de scripts en `package.json` (`feeds`, `catalog:import`) | componentes, estilos, `main.jsx`, `stores.jsx`, `products.js` |
-| **E — Admin/Pedidos** | B5 | `src/pages/Admin.jsx`, `src/components/admin/**`, `src/lib/orders-store.js`, `src/styles/admin.css`, sus `*.test.js` | `package.json`, `main.jsx`, estilos ajenos, tests ajenos |
-| **B — Rutas & SEO** | A6, A7, A8 | `src/main.jsx`, `src/pages/Category.jsx`, `src/pages/Products.jsx`, `scripts/prerender*.mjs`, `src/prerender-entry.jsx`, `vite.config.js`, línea `build` en `package.json` | tests ajenos, estilos, datos, librerías de D/E |
-| **F — Docs** | docs | `README.md`, `ARCHITECTURE.md`, actualización de estados en `TODO.md` | cualquier archivo de código |
-| **Integración (yo)** | B6, A9, verificación final | `ProductCard.jsx`, `StoreHero.jsx`, `scripts/smoke.mjs`, `src/data/stores.jsx`, `src/data/products.js` | — |
+## Fase 3 — Calidad y publicación
 
-## Secuencia
+| ID | Tarea | Criterio de aceptación | Estado |
+|---|---|---|---|
+| 3.1 | Verificar redirecciones | Todas las URLs de Tiendas/Tujo/formularios responden al destino aprobado; revisar enlaces rotos y bucles | [ ] |
+| 3.2 | Probar responsive | Sin desbordamientos ni texto cortado en móvil, tablet y escritorio; CTAs principales visibles y utilizables | [ ] |
+| 3.3 | Revisar accesibilidad | Navegación completa por teclado, foco visible, estructura semántica, contraste WCAG AA y nombres accesibles en enlaces | [ ] |
+| 3.4 | Revisar SEO y compartición | Títulos, descripciones, canonical, Open Graph, sitemap y robots reflejan el rol corporativo; no indexar rutas internas | [x] |
+| 3.5 | Validar contenido y cifras | Aprobación final de negocio; toda métrica publicada tiene fuente, periodo y fecha | [ ] |
+| 3.6 | Ejecutar gates técnicos | `npm run lint`, `npm test`, `npm run build`, `npm run smoke` y E2E relevantes pasan | [~] |
+| 3.7 | Hacer revisión de lanzamiento | Revisar producción en móvil/escritorio y confirmar dominio, SSL, logo, formularios y enlaces oficiales | [ ] |
 
-```
-Onda 1 (paralela)   A · C · D · E
-Onda 2              B (requiere base estable + Admin listo)
-Onda 3              Integración (B6, A9) + F (docs)
-Verificación         lint · npm test · test:e2e · build+prerender · smoke
-```
+## Fuera de alcance público
 
-## Estado global
+- Tienda, catálogo de SKUs, precios, stock, carrito, checkout y pagos.
+- Solicitudes de envío, cotizaciones de productos o seguimiento de pedidos.
+- Panel de pedidos como herramienta pública.
+- Cifras de red, cobertura o resultados no documentadas y aprobadas.
+- Activar las 22 tiendas con URLs supuestas: cada destino requiere confirmación del responsable.
 
-- [x] Onda 1 — A, C, D, E
-- [x] Onda 2 — B
-- [x] Onda 3 — integración + docs
-- [x] Verificación final
+## Orden de ejecución
+
+`Bloqueos I1–I6 → Fase 0 → diseño Fase 1 y aprobación → implementación Fase 2 → calidad y publicación Fase 3`
+
+No iniciar la implementación visual completa antes de aprobar arquitectura, prototipos, lista de tiendas, destinos de formularios y claims cuantitativos. El logo oficial sí está disponible en `public/tujo-logo-real.png`.

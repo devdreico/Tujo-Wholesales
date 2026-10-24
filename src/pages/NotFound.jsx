@@ -21,14 +21,14 @@ export default function NotFound() {
           Página no encontrada
         </h1>
         <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-          La ruta que intentas abrir no existe dentro del directorio.
+          La dirección no existe dentro de la red pública de Tujo.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link className="btn btn--primary" to="/">
             Volver al inicio
           </Link>
-          <Link className="btn btn--outline" to="/productos">
-            Ver productos
+          <Link className="btn btn--outline" to="/tiendas">
+            Tiendas oficiales
           </Link>
         </div>
       </div>

@@ -6,15 +6,15 @@
 
 export const BRAND = 'Tujo'
 export const LEGAL_NAME = 'Tujo Wholesales'
-export const PARENT_COMPANY = 'Tujo Logistics'
-export const TAGLINE = 'Mayoreo con respaldo logístico'
+export const PARENT_COMPANY = 'TUJO LOGISTICS'
+export const TAGLINE = 'La red logística detrás de cada marca'
 
-export const DOMAIN = 'https://wtujo.presentto.online'
+export const DOMAIN = 'https://tujo.presentto.online'
 export const BASE_URL = DOMAIN
 
 export const TWITTER_HANDLE = '@TujoWholesales'
 
-export const OG_IMAGE_PATH = '/tujo-og.png'
+export const OG_IMAGE_PATH = '/tujo-logo-real.png'
 export const LOGO_PATH = OG_IMAGE_PATH
 export const FAVICON_PATH = OG_IMAGE_PATH
 export const APPLE_TOUCH_PATH = OG_IMAGE_PATH

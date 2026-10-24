@@ -1,24 +1,22 @@
 import { NavLink, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { stores } from '../data/stores.jsx'
-import { LEGAL_NAME, LOGO_PATH } from '../lib/brand.js'
+import { partnerFormUrl } from '../data/destinations.js'
+import { LEGAL_NAME, LOGO_PATH, PARENT_COMPANY } from '../lib/brand.js'
 
 const links = [
   { to: '/', label: 'Inicio', end: true },
-  { to: '/productos', label: 'Productos' },
-  { to: '/operacion', label: 'Operación' },
+  { to: '/operacion#modelo', label: 'El modelo' },
+  { to: '/#proyectos', label: 'Proyectos', end: true },
   { to: '/tiendas', label: 'Tiendas' },
 ]
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-  const [storesOpen, setStoresOpen] = useState(false)
 
   useEffect(() => {
     const onKey = (e) => {
       if (e.key !== 'Escape') return
       setOpen(false)
-      setStoresOpen(false)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -28,12 +26,11 @@ export default function Header() {
     <header className="site-header">
       <div className="site-header__brand">
         <Link to="/" className="site-header__logo-link" aria-label={LEGAL_NAME}>
-          <img
-            className="site-header__logo"
-            src={LOGO_PATH}
-            alt=""
-            width="180"
-          />
+          <img className="site-header__logo" src={LOGO_PATH} alt="" width="72" height="80" />
+          <span className="site-header__wordmark">
+            <strong>WHOLESALES</strong>
+            <small>{PARENT_COMPANY}</small>
+          </span>
         </Link>
       </div>
 
@@ -58,48 +55,31 @@ export default function Header() {
         <ul className={`site-nav__list${open ? ' is-open' : ''}`} id="site-nav-menu">
           {links.map((link) => (
             <li key={link.to}>
-              <NavLink
-                to={link.to}
-                end={link.end}
-                className={({ isActive }) =>
-                  `site-nav__link${isActive ? ' is-active' : ''}`
-                }
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </NavLink>
+              {link.to.includes('#') ? (
+                <Link className="site-nav__link" to={link.to} onClick={() => setOpen(false)}>
+                  {link.label}
+                </Link>
+              ) : (
+                <NavLink
+                  to={link.to}
+                  end={link.end}
+                  className={({ isActive }) =>
+                    `site-nav__link${isActive ? ' is-active' : ''}`
+                  }
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </NavLink>
+              )}
             </li>
           ))}
-          <li className={`site-nav__dropdown${storesOpen ? ' is-open' : ''}`}>
-            <button
-              type="button"
-              className="site-nav__link"
-              aria-expanded={storesOpen}
-              aria-controls="site-nav-stores"
-              onClick={() => setStoresOpen((v) => !v)}
-            >
-              Tiendas
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                <path d="M2 4l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <ul className="site-nav__dropdown-list" id="site-nav-stores">
-              {stores.map((store) => (
-                <li key={store.slug}>
-                  <Link
-                    to={`/tienda/${store.slug}`}
-                    className="site-nav__dropdown-link"
-                    onClick={() => {
-                      setOpen(false)
-                      setStoresOpen(false)
-                    }}
-                  >
-                    {store.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li>
+          {partnerFormUrl && (
+            <li className="site-nav__action-item">
+              <a className="site-nav__action" href={partnerFormUrl} target="_blank" rel="noreferrer">
+                Alianzas <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

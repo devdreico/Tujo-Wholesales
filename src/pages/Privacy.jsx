@@ -7,7 +7,7 @@ export default function PrivacyPage() {
   useEffect(() => {
     setSeo({
       title: 'Política de privacidad | Tujo Wholesales',
-      description: 'Política de privacidad y tratamiento de datos del ecosistema Tujo Wholesales.',
+      description: 'Información de privacidad del sitio corporativo de Tujo Wholesales y sus enlaces externos.',
       path: '/privacidad',
     })
   }, [])
@@ -20,10 +20,9 @@ export default function PrivacyPage() {
           title="Política de privacidad"
         />
         <div className="legal-content">
-          <p>Tujo Wholesales procesa información necesaria para operar el portal, administrar pedidos, coordinar nodos y responder solicitudes comerciales de mayoristas, restaurantes, empresas y distribuidoras.</p>
-          <p>La información que se maneja puede incluir datos de contacto, información de negocio, referencias de productos, ubicación geográfica y metadatos técnicos relacionados con la navegación, siempre con finalidad de servicio y operación.</p>
-          <p>No se venden datos personales. La información se conserva solo durante el tiempo necesario para atender la relación comercial, cumplir con obligaciones legales o mejorar la operación del ecosistema.</p>
-          <p>El usuario puede ejercer derechos de acceso, rectificación, oposición, eliminación o limitación del tratamiento en la medida que lo permitan las leyes aplicables.</p>
+          <p>Este sitio presenta información corporativa y enlaza a tiendas oficiales y formularios alojados por sus respectivos responsables. No contiene formularios propios, no procesa pedidos y no solicita datos personales dentro del portal.</p>
+          <p>El proveedor de alojamiento puede procesar registros técnicos necesarios para entregar y proteger el sitio. Cuando una persona abre un destino externo o envía allí sus datos, el tratamiento se rige por el aviso de privacidad de ese responsable.</p>
+          <p>Antes de publicar esta política de forma definitiva, TUJO LOGISTICS debe completar la identidad y los datos de contacto del responsable de privacidad, así como el canal para ejercer derechos aplicables.</p>
           <p><Link to="/cookies">Consultar política de cookies →</Link></p>
         </div>
       </div>
