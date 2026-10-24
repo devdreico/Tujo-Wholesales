@@ -14,7 +14,9 @@ test.describe('Portada', () => {
 
     await expect(page.getByText(/Mayoreo con respaldo logístico/)).toBeVisible()
     await expect(page.getByText(/Tujo Logistics/).first()).toBeVisible()
-    await expect(page.locator('.site-header__logo')).toHaveAttribute('src', '/tujo-logo.svg')
+    const logo = page.locator('.site-header__logo')
+    await expect(logo).toHaveAttribute('src', '/tujo-og.png')
+    await expect(logo).toHaveJSProperty('naturalWidth', 1200)
   })
 
   test('lista las 22 tarjetas del directorio de tiendas', async ({ page }) => {

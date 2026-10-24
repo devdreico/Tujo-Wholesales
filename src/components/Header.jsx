@@ -32,13 +32,8 @@ export default function Header() {
             className="site-header__logo"
             src={LOGO_PATH}
             alt=""
-            width="36"
-            height="36"
+            width="180"
           />
-          <span className="site-header__wordmark">
-            <span className="site-header__name">Tujo</span>
-            <span className="site-header__sub">Wholesales</span>
-          </span>
         </Link>
       </div>
 

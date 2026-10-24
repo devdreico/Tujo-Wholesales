@@ -14,8 +14,7 @@
     "smoke": "node scripts/smoke.mjs",
     "contrast": "node scripts/contrast-check.mjs",
     "feeds": "node scripts/generate-feeds.mjs",
-    "catalog:import": "node scripts/import-catalog.mjs",
-    "brand:assets": "node scripts/generate-brand-assets.mjs"
+    "catalog:import": "node scripts/import-catalog.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -25,7 +24,6 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
-    "@resvg/resvg-js": "^2.6.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",

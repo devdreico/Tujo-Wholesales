@@ -26,6 +26,9 @@
 }
 
 .site-footer__logo {
+  display: block;
+  width: 112px;
+  height: auto;
   flex-shrink: 0;
   margin-top: 2px;
 }

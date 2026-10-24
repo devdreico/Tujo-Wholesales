@@ -12,8 +12,7 @@ export default function Footer() {
               className="site-footer__logo"
               src={LOGO_PATH}
               alt=""
-              width="28"
-              height="28"
+              width="112"
             />
             <div>
               <p className="site-footer__name">{LEGAL_NAME}</p>
