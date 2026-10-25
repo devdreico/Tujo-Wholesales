@@ -60,13 +60,13 @@ export const stores = [
     id: 3,
     slug: 'lun-lou',
     index: '03',
-    name: 'Lun & Lou',
+    name: 'Lun y Lou',
     category: 'Belleza',
     title: 'Ritual de belleza femenina',
     description:
       'Cosmética, skincare y productos de belleza seleccionados con los mejores estándares.',
     url: 'https://lyl.presentto.online/',
-    subdomain: 'lun-lou.presentto.online',
+    subdomain: 'lyl.presentto.online',
     accent: '#f472b6',
     tags: ['belleza', 'skincare', 'cosmética'],
     icon: (
@@ -613,6 +613,25 @@ export const stores = [
           strokeWidth="1.5"
           strokeLinecap="round"
         />
+      </svg>
+    ),
+  },
+  {
+    id: 23,
+    slug: 'sacreps',
+    index: '23',
+    name: 'Sacreps',
+    category: 'Tienda oficial',
+    title: 'Conoce Sacreps',
+    description: 'Descubre la tienda oficial de Sacreps y su oferta disponible.',
+    url: 'https://sacreps.presentto.online',
+    subdomain: 'sacreps.presentto.online',
+    accent: '#111111',
+    tags: ['tienda oficial'],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 10h16v10H4zM3 10l2-6h14l2 6" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M9 20v-6h6v6M3 10a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
       </svg>
     ),
   },

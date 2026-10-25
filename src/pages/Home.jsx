@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { partnerFormUrl, tujoLogisticsUrl } from '../data/destinations.js'
 import { setSeo } from '../lib/seo.js'
-import { LEGAL_NAME, LOGO_PATH, PARENT_COMPANY } from '../lib/brand.js'
+import { LEGAL_NAME, PARENT_COMPANY } from '../lib/brand.js'
 
 const workstreams = [
   {
@@ -26,6 +26,8 @@ const workstreams = [
 ]
 
 export default function Home() {
+  const videoRef = useRef(null)
+
   useEffect(() => {
     setSeo({
       title: `${LEGAL_NAME} | La red logística de TUJO LOGISTICS`,
@@ -33,13 +35,35 @@ export default function Home() {
         'Tujo Wholesales conecta tiendas, bodegas independientes y distribución logística dentro del ecosistema TUJO LOGISTICS.',
       path: '/',
     })
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      videoRef.current?.pause()
+    }
   }, [])
 
   return (
     <div className="corporate-home">
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero hero--video" aria-labelledby="hero-title">
+        <video
+          ref={videoRef}
+          className="hero__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src="/ship-at-sea.webm" type="video/webm" />
+        </video>
+        <div className="hero__shade" aria-hidden="true" />
+        <span className="hero__corner hero__corner--tl" aria-hidden="true" />
+        <span className="hero__corner hero__corner--tr" aria-hidden="true" />
+        <span className="hero__corner hero__corner--bl" aria-hidden="true" />
+        <span className="hero__corner hero__corner--br" aria-hidden="true" />
         <div className="hero__inner container">
-          <div className="hero__copy">
+          <div className="hero__copy hero__copy--glass">
             <p className="hero__eyebrow mono">Una unidad de {PARENT_COMPANY}</p>
             <h1 className="hero__title" id="hero-title">
               Una red comercial. Una operación que la conecta.
@@ -66,16 +90,18 @@ export default function Home() {
               )}
             </p>
           </div>
-          <div className="hero__visual" role="group" aria-label="Identidad de Tujo Wholesales">
-            <div className="hero__mark">
-              <img src={LOGO_PATH} alt="Tujo Wholesales" width="216" height="239" />
-            </div>
-            <p className="hero__visual-caption mono">DISTRIBUCIÓN · RED · COORDINACIÓN</p>
-            <span className="hero__orbit hero__orbit--one" aria-hidden="true" />
-            <span className="hero__orbit hero__orbit--two" aria-hidden="true" />
-          </div>
         </div>
-        <div className="hero__index mono" aria-hidden="true">TW / 01 — 22</div>
+        <div className="hero__index mono" aria-hidden="true">TW / 01 — 23</div>
+        <p className="hero__credit mono">
+          Video: Indian Navy ·{' '}
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Indigenous_Aircrafft_Carrier-1_maiden_sea_voyage.webm"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Wikimedia Commons / GODL-India
+          </a>
+        </p>
       </section>
 
       <section className="reach section" id="alcance" aria-labelledby="reach-title">
@@ -86,7 +112,7 @@ export default function Home() {
           </div>
           <div className="reach__figures">
             <article className="reach__figure">
-              <p className="reach__value">22</p>
+              <p className="reach__value">23</p>
               <p className="reach__label">tiendas oficiales en el ecosistema</p>
             </article>
             <article className="reach__figure reach__figure--wide">

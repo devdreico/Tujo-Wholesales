@@ -82,7 +82,7 @@ const SCENARIOS = [
     checks: [
       ['hero corporativo Tujo', (d) => d.querySelector('h1')?.textContent.includes('Una red comercial')],
       ['relación con TUJO LOGISTICS', (d) => d.body.innerHTML.includes('TUJO LOGISTICS')],
-      ['alcance de 22 tiendas oficiales', (d) => d.body.innerHTML.includes('22')],
+      ['alcance de 23 tiendas oficiales', (d) => d.body.innerHTML.includes('23')],
       ['sin fichas de producto', (d) => d.querySelectorAll('.product-card').length === 0],
       ['CTA al modelo', (d) => Boolean(d.querySelector('a[href="#modelo"]'))],
     ],
@@ -92,9 +92,10 @@ const SCENARIOS = [
     url: 'https://tujo.presentto.online/tiendas',
     checks: [
       ['h1 directorio oficial', (d) => d.querySelector('h1')?.textContent.includes('Marcas propias')],
-      ['ocho dominios confirmados', (d) => d.querySelectorAll('.official-store').length === 8],
+      ['nueve dominios confirmados', (d) => d.querySelectorAll('.official-store').length === 9],
       ['Esturel en subdominio oficial', (d) => d.querySelector('a[href="https://esturel.presentto.online"]') !== null],
       ['Viking Dogs en subdominio oficial', (d) => d.querySelector('a[href="https://vikingdogs.presentto.online"]') !== null],
+      ['Sacreps en subdominio oficial', (d) => d.querySelector('a[href="https://sacreps.presentto.online"]') !== null],
       ['sin páginas locales de venta', (d) => d.querySelectorAll('a[href^="/tienda/"]').length === 0],
     ],
   },

@@ -22,11 +22,11 @@ const source = parseStoresFromJsx(read('./stores.jsx'))
 const meta = JSON.parse(read('./stores.meta.json'))
 
 describe('stores.meta.json sincronizado con stores.jsx', () => {
-  it('mantiene las 22 tiendas en el mismo orden', () => {
-    expect(source).toHaveLength(22)
-    expect(meta).toHaveLength(22)
+  it('mantiene las 23 tiendas en el mismo orden', () => {
+    expect(source).toHaveLength(23)
+    expect(meta).toHaveLength(23)
     expect(meta.map((store) => store.slug)).toEqual(source.map((store) => store.slug))
-    expect(new Set(meta.map((store) => store.slug)).size).toBe(22)
+    expect(new Set(meta.map((store) => store.slug)).size).toBe(23)
   })
 
   it('coincide campo a campo con stores.jsx', () => {
@@ -51,11 +51,12 @@ describe('directorio público de tiendas oficiales', () => {
       'Esturel',
       'Viking Dogs',
       'Catitools',
-      'LYL',
+      'Lun y Lou',
       'Botane',
       'Paceform',
       'Knifopics',
       'Saniver',
+      'Sacreps',
     ])
     for (const store of officialStores) {
       expect(store.url).toMatch(/^https:\/\/[a-z0-9-]+\.presentto\.online$/)
@@ -64,7 +65,7 @@ describe('directorio público de tiendas oficiales', () => {
   })
 
   it('conserva el total reportado de tiendas sin inventar destinos faltantes', () => {
-    expect(OFFICIAL_STORE_COUNT).toBe(22)
+    expect(OFFICIAL_STORE_COUNT).toBe(23)
     expect(officialStores.length).toBeLessThan(OFFICIAL_STORE_COUNT)
   })
 })

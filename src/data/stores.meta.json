@@ -19,10 +19,10 @@
   },
   {
     "slug": "lun-lou",
-    "name": "Lun & Lou",
+    "name": "Lun y Lou",
     "category": "Belleza",
     "index": "03",
-    "subdomain": "lun-lou.presentto.online",
+    "subdomain": "lyl.presentto.online",
     "url": "https://lyl.presentto.online/",
     "accent": "#f472b6"
   },
@@ -196,5 +196,14 @@
     "subdomain": "escolarix.presentto.online",
     "url": "https://escolarix.presentto.online",
     "accent": "#818cf8"
+  },
+  {
+    "slug": "sacreps",
+    "name": "Sacreps",
+    "category": "Tienda oficial",
+    "index": "23",
+    "subdomain": "sacreps.presentto.online",
+    "url": "https://sacreps.presentto.online",
+    "accent": "#111111"
   }
 ]

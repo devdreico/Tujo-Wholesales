@@ -1,9 +1,9 @@
 :root {
-  --forest: #17382e;
-  --forest-deep: #102a22;
-  --leaf: #d8f27a;
-  --coral: #b84d31;
-  --paper: #f4f6f1;
+  --forest: #111111;
+  --forest-deep: #050505;
+  --leaf: #ffffff;
+  --coral: #555555;
+  --paper: #f7f7f7;
 }
 
 body {
@@ -16,8 +16,9 @@ body {
   justify-content: space-between;
   min-height: 82px;
   padding: 0 clamp(1.25rem, 5vw, 5rem);
-  background: var(--paper);
-  border-bottom-color: rgba(23, 56, 46, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(16px);
 }
 
 .site-header__brand {
@@ -373,7 +374,7 @@ body {
 }
 
 .model {
-  background: #e7eee5;
+  background: #ededed;
 }
 
 .model__heading {
@@ -397,13 +398,15 @@ body {
 .model-flow__step {
   min-height: 222px;
   padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-top: 3px solid var(--forest);
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
 }
 
 .model-flow__step--highlight {
-  border-top-color: var(--coral);
-  background: var(--forest);
+  border-top-color: #ffffff;
+  background: rgba(10, 10, 10, 0.9);
   color: #f5f7ed;
 }
 
@@ -487,7 +490,7 @@ body {
 
 .work-row:hover {
   padding-inline: 0.8rem;
-  background: #e8eee6;
+  background: #eeeeee;
 }
 
 .work-row__number {
@@ -601,6 +604,8 @@ body {
   padding: 1.25rem 1.2rem 1.25rem 0;
   border-bottom: 1px solid var(--border-strong);
   transition: background 180ms ease, padding 180ms ease;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
 }
 
 .official-store:nth-child(odd) {
@@ -613,7 +618,7 @@ body {
 
 .official-store:hover {
   padding-left: 0.65rem;
-  background: #e7eee5;
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .official-store__index {
@@ -716,7 +721,7 @@ body {
 }
 
 .operation-network {
-  background: var(--leaf);
+  background: #ededed;
 }
 
 .operation-network__inner {
@@ -769,7 +774,7 @@ body {
 .site-footer {
   margin-top: 0;
   border-top: 0;
-  background: #0b211a;
+  background: #111111;
   color: #f5f7ed;
 }
 
@@ -1061,5 +1066,235 @@ body {
   .official-store,
   .site-nav__action {
     transition: none;
+  }
+}
+
+.hero {
+  display: grid;
+  align-items: center;
+  min-height: clamp(400px, calc(100svh - 160px), 720px);
+  padding: 3rem 0 4.5rem;
+  background: #101010;
+  color: #ffffff;
+  isolation: isolate;
+}
+
+.hero__video,
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__video {
+  z-index: -2;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.62);
+}
+
+.hero__shade {
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0.3));
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: unset;
+}
+
+.hero__copy--glass {
+  width: min(820px, 100%);
+  margin-inline: auto;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+  color: #111111;
+  backdrop-filter: blur(22px) saturate(70%);
+  -webkit-backdrop-filter: blur(22px) saturate(70%);
+}
+
+.hero__eyebrow {
+  color: #444444;
+}
+
+.hero__title {
+  color: #111111;
+  font-size: 4rem;
+  letter-spacing: 0;
+}
+
+.hero__lead {
+  margin-inline: 0;
+  color: #333333;
+}
+
+.hero .btn--signal {
+  border-color: #111111;
+  background: #111111;
+  color: #ffffff;
+}
+
+.hero .btn--signal:hover {
+  background: #333333;
+}
+
+.hero .btn--light {
+  border-color: rgba(0, 0, 0, 0.45);
+  color: #111111;
+}
+
+.hero .btn--light:hover {
+  border-color: #111111;
+  color: #000000;
+}
+
+.hero__parent-link,
+.hero__parent-link a {
+  color: #333333;
+}
+
+.hero__index {
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hero__credit {
+  position: absolute;
+  z-index: 1;
+  bottom: 1.2rem;
+  left: clamp(1rem, 5vw, 5rem);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.58rem;
+}
+
+.hero__credit a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero__corner {
+  position: absolute;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border-color: rgba(255, 255, 255, 0.88);
+  border-style: solid;
+  border-width: 0;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+.hero__corner--tl {
+  top: 1.4rem;
+  left: 1.4rem;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  animation-name: drift-tl;
+}
+
+.hero__corner--tr {
+  top: 1.4rem;
+  right: 1.4rem;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  animation-name: drift-tr;
+}
+
+.hero__corner--bl {
+  bottom: 1.4rem;
+  left: 1.4rem;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  animation-name: drift-bl;
+}
+
+.hero__corner--br {
+  right: 1.4rem;
+  bottom: 1.4rem;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  animation-name: drift-br;
+}
+
+@keyframes drift-tl {
+  to { transform: translate(6px, 6px); }
+}
+
+@keyframes drift-tr {
+  to { transform: translate(-6px, 6px); }
+}
+
+@keyframes drift-bl {
+  to { transform: translate(6px, -6px); }
+}
+
+@keyframes drift-br {
+  to { transform: translate(-6px, -6px); }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: clamp(400px, calc(100svh - 140px), 650px);
+    padding-block: 1.5rem 3.5rem;
+  }
+
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .hero__copy--glass {
+    padding: 1.6rem;
+  }
+
+  .hero__copy {
+    padding-block: 1.6rem;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .hero__credit {
+    bottom: 0.85rem;
+    max-width: calc(100% - 8rem);
+    font-size: 0.5rem;
+  }
+
+  .hero__corner {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero__corner--tl,
+  .hero__corner--tr {
+    top: 0.75rem;
+  }
+
+  .hero__corner--tl,
+  .hero__corner--bl {
+    left: 0.75rem;
+  }
+
+  .hero__corner--tr,
+  .hero__corner--br {
+    right: 0.75rem;
+  }
+
+  .hero__corner--bl,
+  .hero__corner--br {
+    bottom: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__corner {
+    animation: none;
   }
 }

@@ -20,7 +20,7 @@ Este sitio **no es una tienda**: no debe mostrar productos, precios, stock, carr
 
 | ID | Insumo requerido | Formato de entrega | Desbloquea | Estado |
 |---|---|---|---|---|
-| I1 | Directorio oficial de 22 tiendas | Nombre visible, URL final, logo autorizado (si existe), estado activa/inactiva | Directorio y redirecciones | [ ] |
+| I1 | Directorio oficial de 23 tiendas | Nombre visible, URL final, logo autorizado (si existe), estado activa/inactiva | Directorio y redirecciones | [ ] |
 | I2 | Destinos oficiales | URL de Tujo, formulario para socios y otros formularios aprobados; indicar propietario de cada destino | CTAs y páginas de participación | [ ] |
 | I3 | Audiencias y modelo | Tipos de participantes, qué aportan, qué reciben y cómo se integran; validar con negocio | Mensaje principal y páginas del modelo | [ ] |
 | I4 | Datos de escala/proyectos | Por proyecto: nombre, objetivo, estado, territorio, periodo, aliados, alcance medido, unidad, fuente y aprobador. Para cifras de red: definición, periodo y evidencia | Bloque cuantitativo y proyectos | [ ] |
@@ -46,17 +46,17 @@ Este sitio **no es una tienda**: no debe mostrar productos, precios, stock, carr
 | 1.4 | Diseñar sistema visual | Logo real integrado; tokens de color, tipografía, escala, espaciado, botones, enlaces, estados, iconografía y tratamiento de imágenes documentados | I5 | [~] |
 | 1.5 | Diseñar visualización del modelo | Diagrama legible que explique cómo se conectan TUJO LOGISTICS, Wholesales, tiendas/bodegas y distribución, aprobado por negocio | I3 | [~] |
 | 1.6 | Diseñar fichas de proyectos y métricas | Cada ficha explica objetivo, aporte de Wholesales, estado, territorio, periodo, alcance/resultados medidos y cómo colaborar si aplica; métricas muestran valor, unidad, fuente y fecha. Separar resultados logrados de metas futuras | I2, I4 | [ ] |
-| 1.7 | Diseñar directorio de 22 tiendas | Nombre y enlace oficial por tienda; búsqueda/filtro solo si mejora el uso con 22 elementos; ninguna tarjeta simula compra | I1 | [~] |
+| 1.7 | Diseñar directorio de 23 tiendas | Nombre y enlace oficial por tienda; búsqueda/filtro solo si mejora el uso con 23 elementos; ninguna tarjeta simula compra | I1 | [~] |
 | 1.8 | Revisar prototipo con usuarios internos | Validación con al menos 3 perfiles representativos del equipo/negocio; registrar dudas, cambios y aprobación final | 1.3–1.7 | [ ] |
 
 ## Fase 2 — Implementación del sitio
 
 | ID | Tarea | Criterio de aceptación | Bloqueo | Estado |
 |---|---|---|---|---|
-| 2.1 | Rehacer Inicio corporativo | Presenta marca, relación con TUJO LOGISTICS, modelo y rutas principales; sin catálogo ni cifras sin aprobar | Fase 1 | [x] |
+| 2.1 | Rehacer Inicio corporativo | Presenta marca, relación con TUJO LOGISTICS, modelo y rutas principales; hero con video marítimo monocromo, cristal y movimiento reducido; sin catálogo ni cifras sin aprobar | Fase 1 | [~] |
 | 2.2 | Publicar página Modelo | Describe roles, flujo de colaboración y alcance en lenguaje aprobado; sin promesas de entregas al visitante | I3 | [~] |
 | 2.3 | Publicar Proyectos y alcance | Cada proyecto publicado incluye objetivo, aporte de Wholesales, estado, territorio/periodo y resultado cuantificado con unidad y fuente; las metas futuras se etiquetan como metas y la colaboración enlaza al formulario aprobado | I2, I4 | [ ] |
-| 2.4 | Publicar directorio oficial | Las 22 entradas apuntan a URLs confirmadas; enlaces probados y marcas visuales autorizadas | I1 | [~] |
+| 2.4 | Publicar directorio oficial | Las 23 entradas apuntan a URLs confirmadas; enlaces probados y marcas visuales autorizadas | I1 | [~] |
 | 2.5 | Implementar CTAs de participación | Cada CTA abre el formulario oficial correspondiente; no se crea un formulario paralelo sin dueño y destino aprobados | I2 | [ ] |
 | 2.6 | Integrar logo y metadatos | `tujo-logo-real.png` usado en encabezado, favicon/manifest y Open Graph, con dimensiones/alternativas correctas | I5 | [x] |
 | 2.7 | Retirar rutas comerciales del menú público | Productos, categorías, fichas, admin y acciones de pedido no aparecen en navegación, sitemap público ni CTA de la nueva experiencia | Aprobación de alcance | [x] |
@@ -80,7 +80,7 @@ Este sitio **no es una tienda**: no debe mostrar productos, precios, stock, carr
 - Solicitudes de envío, cotizaciones de productos o seguimiento de pedidos.
 - Panel de pedidos como herramienta pública.
 - Cifras de red, cobertura o resultados no documentadas y aprobadas.
-- Activar las 22 tiendas con URLs supuestas: cada destino requiere confirmación del responsable.
+- Activar las 23 tiendas con URLs supuestas: cada destino requiere confirmación del responsable.
 
 ## Orden de ejecución
 

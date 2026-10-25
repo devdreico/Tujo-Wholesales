@@ -21,7 +21,11 @@ describe('Integración de rutas', () => {
     renderApp('/tiendas')
 
     expect(screen.getByRole('heading', { name: 'Marcas propias. Red compartida.' })).toBeInTheDocument()
-    expect(screen.getAllByRole('link', { name: /presentto\.online/ })).toHaveLength(8)
+    expect(screen.getAllByRole('link', { name: /presentto\.online/ })).toHaveLength(9)
+    expect(screen.getByRole('link', { name: /sacreps\.presentto\.online/ })).toHaveAttribute(
+      'href',
+      'https://sacreps.presentto.online',
+    )
     expect(screen.getByText(/Aquí aparecen únicamente los destinos cuya dirección está confirmada/)).toBeInTheDocument()
   })
 

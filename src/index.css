@@ -6,23 +6,23 @@
 /* ---- Tokens ---- */
 :root {
   /* Palette */
-  --bg: #f4f6f1;
-  --bg-subtle: #e9eee7;
+  --bg: #f7f7f7;
+  --bg-subtle: #eeeeee;
   --surface: #ffffff;
-  --surface-hover: #edf1eb;
-  --border: #d8dfd6;
-  --border-strong: #aab6aa;
+  --surface-hover: #f1f1f1;
+  --border: #dedede;
+  --border-strong: #a8a8a8;
 
-  --text: #18312a;
-  --text-secondary: #42564d;
-  --text-muted: #68796e;
+  --text: #111111;
+  --text-secondary: #414141;
+  --text-muted: #666666;
   --text-inverse: #ffffff;
 
-  --accent: #a8442d;
-  --accent-hover: #8e3926;
+  --accent: #111111;
+  --accent-hover: #333333;
   --accent-contrast: #ffffff;
 
-  --focus-ring: #a8442d;
+  --focus-ring: #111111;
 
   /* Typography */
   --font: 'DM Sans', system-ui, -apple-system, sans-serif;

@@ -16,6 +16,14 @@ test.describe('Portada', () => {
     await expect(logo).toHaveJSProperty('naturalWidth', 1080)
   })
 
+  test('muestra el video marítimo y su atribución en el hero', async ({ page }) => {
+    await page.goto('/')
+
+    await expect(page.locator('.hero__video source')).toHaveAttribute('src', '/ship-at-sea.webm')
+    await expect(page.getByRole('link', { name: 'Wikimedia Commons / GODL-India' })).toBeVisible()
+    await expect(page.locator('.hero__corner')).toHaveCount(4)
+  })
+
   test('explica el modelo y el alcance sin mostrar productos', async ({ page }) => {
     await page.goto('/')
 
@@ -28,9 +36,10 @@ test.describe('Portada', () => {
     await page.goto('/tiendas')
 
     const links = page.locator('.official-store')
-    await expect(links).toHaveCount(8)
+    await expect(links).toHaveCount(9)
     await expect(links.first()).toHaveAttribute('href', 'https://esturel.presentto.online')
     await expect(links.nth(2)).toHaveAttribute('href', 'https://catitools.presentto.online')
+    await expect(links.nth(8)).toHaveAttribute('href', 'https://sacreps.presentto.online')
     await expect(page.getByText(/solo los destinos cuya dirección está confirmada/)).toBeVisible()
   })
 })
